@@ -1,30 +1,33 @@
 module.exports = {
-    "env": {
-        "browser": true,
-        "es2021": true
+    env: {
+        browser: true,
+        es2021: true,
     },
-    "extends": [
+    extends: [
         "plugin:react/recommended",
-        "airbnb",
         "react-app",
         "eslint:recommended",
-        "plugin:react/recommended",
         "plugin:jsx-a11y/recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended",
         "plugin:eslint-comments/recommended",
-        "prettier"
-
+        // "prettier"
     ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-
-        "ecmaVersion": "latest",
-        "sourceType": "module"
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+        ecmaVersion: "latest",
+        sourceType: "module",
     },
-    plugins: ["@typescript-eslint", "eslint-comments", "jsx-a11y", "react"],
+    plugins: [
+        "@typescript-eslint",
+        "eslint-comments",
+        "jsx-a11y",
+        "react",
+        "react-hooks",
+        "prettier",
+    ],
     rules: {
-        "react/jsx-filename-extension": [1, { "allow": "as-needed" }],
+        "react/jsx-filename-extension": [1, { allow: "as-needed" }],
         "array-callback-return": "warn",
         "default-case": "off",
         "dot-location": ["warn", "property"],
@@ -272,13 +275,8 @@ module.exports = {
         "react/jsx-filename-extension": [
             2,
             {
-                "extensions": [
-                    ".js",
-                    ".jsx",
-                    ".ts",
-                    ".tsx"
-                ]
-            }
+                extensions: [".js", ".jsx", ".ts", ".tsx"],
+            },
         ],
         "import/extensions": [
             "warn",
@@ -287,27 +285,29 @@ module.exports = {
             //     "ts": "never",
             //     "tsx": "never"
             // }
-        ]
+        ],
     },
-    overrides: [{
-        // enable the rule specifically for TypeScript files
-        files: ["*.ts", "*.tsx"],
-        rules: {
-            "@typescript-eslint/explicit-function-return-type": [
-                "warn",
-                {
-                    allowExpressions: true,
-                    allowTypedFunctionExpressions: true,
-                    allowHigherOrderFunctions: true,
-                    allowDirectConstAssertionInArrowFunctions: true,
-                    allowConciseArrowFunctionExpressionsStartingWithVoid: true,
-                },
-            ],
+    overrides: [
+        {
+            // enable the rule specifically for TypeScript files
+            files: ["*.ts", "*.tsx"],
+            rules: {
+                "@typescript-eslint/explicit-function-return-type": [
+                    "warn",
+                    {
+                        allowExpressions: true,
+                        allowTypedFunctionExpressions: true,
+                        allowHigherOrderFunctions: true,
+                        allowDirectConstAssertionInArrowFunctions: true,
+                        allowConciseArrowFunctionExpressionsStartingWithVoid: true,
+                    },
+                ],
+            },
         },
-    }, ],
-    "settings": {
+    ],
+    settings: {
         "import/resolver": {
-            "typescript": {}
-        }
-    }
+            typescript: {},
+        },
+    },
 };
