@@ -5,7 +5,8 @@ module.exports = {
         "header-min-length": [2, "always", 12],
         "type-enum": [
             2,
-            "always", [
+            "always",
+            [
                 "build",
                 "chore",
                 "ci",
@@ -22,22 +23,13 @@ module.exports = {
         "scope-empty": [2, "never"],
         "scope-enum": [
             2,
-            "always", [
+            "always",
+            [
                 "ci",
                 "desktop",
                 "deployment",
-                "electron",
                 "env",
-                "agora",
-                "whiteboard",
                 "component",
-                "storybook",
-                "flat-components",
-                "flat-types",
-                "web",
-                "i18n",
-                "renderer-app",
-                "main-app",
                 "version",
                 "library",
                 "scripts",
@@ -50,13 +42,8 @@ module.exports = {
                 "project",
                 "ide",
                 "license",
-                "debug",
-                "github",
                 "style",
-                "room",
-                "classroom",
                 "assets",
-                "login",
             ],
         ],
         "scope-case": [2, "always", ["lower-case", "kebab-case"]],
