@@ -4,18 +4,18 @@ RUN mkdir -p /app
 # 工作目录为 app
 WORKDIR /app
 # 将以package结尾的json文件拷贝
-COPY package*.json ./
-# RUN npm install -g pnpm
+COPY package*.json .
+RUN npm install -g pnpm
 # 执行 安装依赖
-RUN npm install
+RUN pnpm install
 # 将 ts配置文件拷贝过去
-COPY tsconfig.json ./
+COPY tsconfig.json .
 # 将public目录拷贝过去
 COPY public public/
 # 将src目录拷贝过去
 COPY src src/
 # 执行构建脚本
-RUN npm run build
+RUN pnpm run build
 
 # 拉取nginx
 FROM nginx:alpine
