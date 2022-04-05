@@ -5,8 +5,6 @@ RUN mkdir -p /app
 WORKDIR /app
 # 将以package结尾的json文件拷贝
 COPY package*.json ./
-
-RUN npm install -g pnpm
 # 执行 安装依赖
 RUN pnpm install
 COPY . .
