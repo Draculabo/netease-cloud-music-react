@@ -1,6 +1,6 @@
-import react from "react";
+import React from "react";
 
-const App: react.FC = function App() {
+const App: React.FC = function App() {
     return <>App</>;
 };
 export default App;
