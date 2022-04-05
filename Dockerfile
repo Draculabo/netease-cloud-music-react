@@ -4,6 +4,7 @@ FROM node:14 AS build
 WORKDIR /app
 # 将以package结尾的json文件拷贝
 COPY package*.json ./
+RUN npm install -g pnpm
 # 执行 安装依赖
 RUN pnpm install
 # 将 ts配置文件拷贝过去
