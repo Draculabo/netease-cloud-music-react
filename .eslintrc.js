@@ -287,24 +287,6 @@ module.exports = {
             // }
         ],
     },
-    overrides: [
-        {
-            // enable the rule specifically for TypeScript files
-            files: ["*.ts", "*.tsx"],
-            rules: {
-                "@typescript-eslint/explicit-function-return-type": [
-                    "warn",
-                    {
-                        allowExpressions: true,
-                        allowTypedFunctionExpressions: true,
-                        allowHigherOrderFunctions: true,
-                        allowDirectConstAssertionInArrowFunctions: true,
-                        allowConciseArrowFunctionExpressionsStartingWithVoid: true,
-                    },
-                ],
-            },
-        },
-    ],
     settings: {
         "import/resolver": {
             typescript: {},
