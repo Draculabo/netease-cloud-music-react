@@ -9,6 +9,9 @@ export const DiscoverTabWrapper = styled.div`
         padding-left: 100px;
         height: inherit;
     }
+    .active {
+        background-color: #9b0909;
+    }
     a {
         color: #eee;
         padding: 0px 20px;

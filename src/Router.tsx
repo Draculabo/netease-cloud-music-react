@@ -6,9 +6,9 @@ import { Chart, Friend, Mine, NewSongs, PlayList, Radio, Recommend, Singer } fro
 export const RenderRoute = memo(() => {
     const routes: RouteObject[] = [
         {
-            path: "",
+            path: "/",
 
-            element: <Navigate to={"/discover"} />,
+            element: <Navigate to={"/discover"} replace />,
         },
         {
             path: "/discover",
@@ -16,8 +16,8 @@ export const RenderRoute = memo(() => {
             element: <DisCoverLayout />,
             children: [
                 {
-                    index: true,
-                    element: <Recommend />,
+                    path: "",
+                    element: <Navigate to={"/discover/recommend"} replace />,
                 },
                 {
                     path: "recommend/*",
