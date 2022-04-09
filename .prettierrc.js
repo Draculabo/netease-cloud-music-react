@@ -7,11 +7,13 @@ module.exports = {
     trailingComma: "all",
     bracketSpacing: true,
     endOfLine: "auto",
-    overrides: [{
-        files: ["*.json", "*.yaml", "*.yml"],
-        options: {
-            tabWidth: 2,
+    overrides: [
+        {
+            files: ["*.json", "*.yaml", "*.yml"],
+            options: {
+                tabWidth: 2,
+            },
         },
-    }, ],
+    ],
     singleQuote: false,
 };

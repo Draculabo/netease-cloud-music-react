@@ -1,5 +1,3 @@
 {
-  "recommendations": [
-    "infeng.vscode-react-typescript"
-  ]
+  "recommendations": ["infeng.vscode-react-typescript"]
 }

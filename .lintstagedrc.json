@@ -1,7 +1,6 @@
 {
-    "*.svg": "svgo",
+  "*.svg": "svgo",
 
-    "*.{js,jsx,ts,tsx}": ["prettier --write .", "eslint  --fix"],
-    "*.md": ["prettier --write"]
-
+  "*.{js,jsx,ts,tsx}": ["prettier --write .", "eslint  --fix"],
+  "*.md": ["prettier --write"]
 }
