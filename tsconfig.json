@@ -1,55 +1,51 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "paths": {
       "@/*": ["src/*"]
-    }, 
+    },
     "checkJs": true, // 允许在JS文件中报错，通常与allowJS一起使用
     "outDir": "./dist", // 指定输出目录
     "rootDir": "./", // 指定输出文件目录(用于输出)，用于控制输出目录结构
     "declaration": true, // 生成声明文件，开启后会自动生成声明文件
-    "declarationDir": "./src/types", // 指定生成声明文件存放目录 
+    "declarationDir": "./src/types", // 指定生成声明文件存放目录
     "declarationMap": true, // 为声明文件生成sourceMap
     "typeRoots": [], // 声明文件目录，默认时node_modules/@types
     "types": [], // 加载的声明文件包
-    "removeComments":true, // 删除注释 
+    "removeComments": true, // 删除注释
     "importHelpers": true, // 通过tslib引入helper函数，文件必须是模块
     "downlevelIteration": true, // 降级遍历器实现，如果目标源是es3/5，那么遍历器会有降级的实现
     "strict": true, // 开启所有严格的类型检查
-    "alwaysStrict": true, // 在代码中注入'use strict' 
+    "alwaysStrict": true, // 在代码中注入'use strict'
     "strictNullChecks": true, // 不允许把null、undefined赋值给其他类型的变量
     "strictFunctionTypes": true, // 不允许函数参数双向协变
-    "allowUnreachableCode": false, 
+    "allowUnreachableCode": false,
     "noImplicitThis": true, // 不允许this有隐式的any类型
     "noUnusedLocals": true, // 检查只声明、未使用的局部变量(只提示不报错)
-    "noUnusedParameters": true, // 检查未使用的函数参数(只提示不报错) 
+    "noUnusedParameters": true, // 检查未使用的函数参数(只提示不报错)
     "strictPropertyInitialization": true, // 类的实例属性必须初始化
     "strictBindCallApply": true, // 严格的bind/call/apply检查
     "noImplicitReturns": true, //每个分支都会有返回值
     "esModuleInterop": true, // 允许export=导出，由import from 导入
-    "noImplicitAny": true, 
+    "noImplicitAny": true,
     "incremental": true, // TS编译器在第一次编译之后会生成一个存储编译信息的文件，第二次编译会在第一次的基础上进行增量编译，可以提高编译的速度
     "tsBuildInfoFile": "./buildFile", // 增量编译文件的存储位置
-    "diagnostics": true, // 打印诊断信息   
+    "diagnostics": true, // 打印诊断信息
     "moduleResolution": "node", // 模块解析策略，ts默认用node的解析策略，即相对的方式导入
     "baseUrl": "./", // 解析非相对模块的基地址，默认是当前目录
     "allowJs": true,
-    "skipLibCheck": true, 
-    "allowSyntheticDefaultImports": true, 
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext", 
+    "module": "esnext",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "rootDirs": ["src","out"], // 将多个目录放在一个虚拟目录下，用于运行时，即编译后引入文件的位置可能发生变化，这也设置可以虚拟src和out在同一个目录下，不用再去改变路径也不会报错
+    "rootDirs": ["src", "out"] // 将多个目录放在一个虚拟目录下，用于运行时，即编译后引入文件的位置可能发生变化，这也设置可以虚拟src和out在同一个目录下，不用再去改变路径也不会报错
   },
   "exclude": ["node_modules", "dist", "public"],
-  "include": ["src/**/*.ts", "src/**/*.tsx", "typings/*.d.ts", "scripts/*.ts", "vite.config.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "typings/*.d.ts", "scripts/*.ts"]
 }
