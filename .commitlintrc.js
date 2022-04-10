@@ -26,7 +26,6 @@ module.exports = {
             "always",
             [
                 "ci",
-                "desktop",
                 "deployment",
                 "env",
                 "component",
@@ -40,7 +39,6 @@ module.exports = {
                 "husky",
                 "lint",
                 "project",
-                "ide",
                 "license",
                 "style",
                 "assets",

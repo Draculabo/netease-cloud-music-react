@@ -34,6 +34,7 @@ module.exports = {
                 ignorePropertyModificationsFor: [
                     "e", // for e.returnvalue
                     "state", // for redux
+                    "config",
                 ],
             },
         ],
@@ -133,7 +134,7 @@ module.exports = {
         //     },
         // ],
         // "no-unused-labels": "warn",
-        "no-unused-vars": "off",
+        "no-unused-vars": 0,
         // "no-useless-computed-key": "warn",
         // "no-useless-concat": "warn",
         "no-useless-constructor": "off",

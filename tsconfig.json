@@ -22,13 +22,13 @@
     "strictFunctionTypes": true, // 不允许函数参数双向协变
     "allowUnreachableCode": false,
     "noImplicitThis": true, // 不允许this有隐式的any类型
-    "noUnusedLocals": true, // 检查只声明、未使用的局部变量(只提示不报错)
-    "noUnusedParameters": true, // 检查未使用的函数参数(只提示不报错)
+    "noUnusedLocals": false, // 检查只声明、未使用的局部变量(只提示不报错)
+    "noUnusedParameters": false, // 检查未使用的函数参数(只提示不报错)
     "strictPropertyInitialization": true, // 类的实例属性必须初始化
     "strictBindCallApply": true, // 严格的bind/call/apply检查
     "noImplicitReturns": true, //每个分支都会有返回值
     "esModuleInterop": true, // 允许export=导出，由import from 导入
-    "noImplicitAny": true,
+    "noImplicitAny": false, // 允许有隐性的any类型
     "incremental": true, // TS编译器在第一次编译之后会生成一个存储编译信息的文件，第二次编译会在第一次的基础上进行增量编译，可以提高编译的速度
     "tsBuildInfoFile": "./buildFile", // 增量编译文件的存储位置
     "diagnostics": true, // 打印诊断信息
