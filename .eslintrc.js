@@ -19,6 +19,7 @@ module.exports = {
     plugins: ["@typescript-eslint", "react", "react-hooks", "prettier"],
     rules: {
         "no-console": "off",
+
         // suppress errors for missing 'import React' in files
         "react/react-in-jsx-scope": "off",
         "arrow-body-style": 0,
@@ -26,7 +27,16 @@ module.exports = {
         "max-lines-per-function": [2, { max: 320, skipComments: true, skipBlankLines: true }],
         "no-confusing-arrow": 0,
         "no-nested-ternary": 0,
-        "no-param-reassign": [2, { props: true, ignorePropertyModificationsFor: ["draft"] }],
+        "no-param-reassign": [
+            2,
+            {
+                props: true,
+                ignorePropertyModificationsFor: [
+                    "e", // for e.returnvalue
+                    "state", // for redux
+                ],
+            },
+        ],
         "react/no-this-in-sfc": 0,
         "react/prop-types": 0,
         "react/display-name": "off",

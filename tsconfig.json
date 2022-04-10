@@ -8,9 +8,9 @@
     "checkJs": true, // 允许在JS文件中报错，通常与allowJS一起使用
     "outDir": "./dist", // 指定输出目录
     "rootDir": "./", // 指定输出文件目录(用于输出)，用于控制输出目录结构
-    "declaration": true, // 生成声明文件，开启后会自动生成声明文件
-    "declarationDir": "./src/types", // 指定生成声明文件存放目录
-    "declarationMap": true, // 为声明文件生成sourceMap
+    // "declaration": true, // 生成声明文件，开启后会自动生成声明文件
+    // "declarationDir": "./src/typings", // 指定生成声明文件存放目录
+    // "declarationMap": true, // 为声明文件生成sourceMap
     "typeRoots": [], // 声明文件目录，默认时node_modules/@types
     "types": [], // 加载的声明文件包
     "removeComments": true, // 删除注释
