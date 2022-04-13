@@ -46,16 +46,16 @@ export const CMFooter = memo(() => {
                     </p>
                 </FooterLeft>
                 <FooterRight>
-                    <ul>
+                    <div>
                         {footerImages.map((value, index) => {
                             return (
-                                <li key={index}>
+                                <div key={index}>
                                     <a className="logo-amped" href={value.link} />
                                     <span>{value.title}</span>
-                                </li>
+                                </div>
                             );
                         })}
-                    </ul>
+                    </div>
                 </FooterRight>
             </FooterWrapper>
         </div>
