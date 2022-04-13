@@ -1,6 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
+  "@ant-design/icons": ^4.7.0
   "@babel/core": ^7.17.8
   "@babel/plugin-syntax-flow": ^7.16.7
   "@babel/plugin-transform-react-jsx": ^7.17.3
@@ -46,7 +47,7 @@ specifiers:
   react: ^18.0.0
   react-dom: ^18.0.0
   react-is: ^18.0.0
-  react-redux: ^7.2.8
+  react-redux: 7.2.4
   react-router: ^6.3.0
   react-router-dom: ^6.3.0
   react-scripts: 5.0.0
@@ -58,8 +59,9 @@ specifiers:
   web-vitals: ^2.1.4
 
 dependencies:
+  "@ant-design/icons": registry.npmmirror.com/@ant-design/icons/4.7.0_react-dom@18.0.0+react@18.0.0
   "@craco/craco": registry.npmmirror.com/@craco/craco/6.4.3_7757f349d204b74348bc70fb770a62ff
-  "@reduxjs/toolkit": registry.npmmirror.com/@reduxjs/toolkit/1.8.1_react-redux@7.2.8+react@18.0.0
+  "@reduxjs/toolkit": registry.npmmirror.com/@reduxjs/toolkit/1.8.1_react-redux@7.2.4+react@18.0.0
   "@testing-library/jest-dom": registry.npmmirror.com/@testing-library/jest-dom/5.16.3
   "@testing-library/react": registry.npmmirror.com/@testing-library/react/12.1.4_react-dom@18.0.0+react@18.0.0
   "@testing-library/user-event": registry.npmmirror.com/@testing-library/user-event/13.5.0_@testing-library+dom@8.12.0
@@ -77,7 +79,7 @@ dependencies:
   react: registry.npmmirror.com/react/18.0.0
   react-dom: registry.npmmirror.com/react-dom/18.0.0_react@18.0.0
   react-is: registry.npmmirror.com/react-is/18.0.0
-  react-redux: registry.npmmirror.com/react-redux/7.2.8_react-dom@18.0.0+react@18.0.0
+  react-redux: registry.npmmirror.com/react-redux/7.2.4_react-dom@18.0.0+react@18.0.0
   react-router: registry.npmmirror.com/react-router/6.3.0_react@18.0.0
   react-router-dom: registry.npmmirror.com/react-router-dom/6.3.0_react-dom@18.0.0+react@18.0.0
   react-scripts: registry.npmmirror.com/react-scripts/5.0.0_456106bf6aa151672f2a91827453ffb8
@@ -3537,7 +3539,7 @@ packages:
       webpack-dev-server: registry.npmmirror.com/webpack-dev-server/4.7.4_webpack@5.71.0
     dev: false
 
-  registry.npmmirror.com/@reduxjs/toolkit/1.8.1_react-redux@7.2.8+react@18.0.0:
+  registry.npmmirror.com/@reduxjs/toolkit/1.8.1_react-redux@7.2.4+react@18.0.0:
     resolution:
       {
         integrity: sha512-Q6mzbTpO9nOYRnkwpDlFOAbQnd3g7zj7CtHAZWz5SzE5lcV97Tf8f3SzOO8BoPOMYBFgfZaqTUZqgGu+a0+Fng==,
@@ -3558,7 +3560,7 @@ packages:
     dependencies:
       immer: registry.npmmirror.com/immer/9.0.12
       react: registry.npmmirror.com/react/18.0.0
-      react-redux: registry.npmmirror.com/react-redux/7.2.8_react-dom@18.0.0+react@18.0.0
+      react-redux: registry.npmmirror.com/react-redux/7.2.4_react-dom@18.0.0+react@18.0.0
       redux: registry.npmmirror.com/redux/4.1.2
       redux-thunk: registry.npmmirror.com/redux-thunk/2.4.1_redux@4.1.2
       reselect: registry.npmmirror.com/reselect/4.1.5
@@ -18412,18 +18414,18 @@ packages:
     version: 18.0.0
     dev: false
 
-  registry.npmmirror.com/react-redux/7.2.8_react-dom@18.0.0+react@18.0.0:
+  registry.npmmirror.com/react-redux/7.2.4_react-dom@18.0.0+react@18.0.0:
     resolution:
       {
-        integrity: sha512-6+uDjhs3PSIclqoCk0kd6iX74gzrGc3W5zcAjbrFgEdIjRSQObdIwfx80unTkVUYvbQ95Y8Av3OvFHq1w5EOUw==,
+        integrity: sha512-hOQ5eOSkEJEXdpIKbnRyl04LhaWabkDPV+Ix97wqQX3T3d2NQ8DUblNXXtNMavc7DpswyQM6xfaN4HQDKNY2JA==,
         registry: https://registry.npm.taobao.org/,
-        tarball: https://registry.npmmirror.com/react-redux/-/react-redux-7.2.8.tgz,
+        tarball: https://registry.npmmirror.com/react-redux/-/react-redux-7.2.4.tgz,
       }
-    id: registry.npmmirror.com/react-redux/7.2.8
+    id: registry.npmmirror.com/react-redux/7.2.4
     name: react-redux
-    version: 7.2.8
+    version: 7.2.4
     peerDependencies:
-      react: ^16.8.3 || ^17 || ^18
+      react: ^16.8.3 || ^17
       react-dom: "*"
       react-native: "*"
     peerDependenciesMeta:
@@ -18439,7 +18441,7 @@ packages:
       prop-types: registry.npmmirror.com/prop-types/15.8.1
       react: registry.npmmirror.com/react/18.0.0
       react-dom: registry.npmmirror.com/react-dom/18.0.0_react@18.0.0
-      react-is: registry.npmmirror.com/react-is/17.0.2
+      react-is: registry.npmmirror.com/react-is/16.13.1
     dev: false
 
   registry.npmmirror.com/react-refresh/0.11.0:
