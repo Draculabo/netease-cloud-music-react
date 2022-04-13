@@ -1,5 +1,11 @@
-import { memo } from "react";
+import { HotRecommend, RecommendCarousel } from "./ChildComponents";
 
-export const Recommend = memo(() => {
-    return <div>Recommend</div>;
-});
+export const Recommend: React.FC = () => {
+    return (
+        <>
+            {/* 轮播图 */}
+            <RecommendCarousel />
+            <HotRecommend />
+        </>
+    );
+};

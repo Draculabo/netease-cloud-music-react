@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import request from "@/utils/request";
+import { request } from "@/utils/";
 export interface RecommendState {
     loading: boolean;
     error: string;
