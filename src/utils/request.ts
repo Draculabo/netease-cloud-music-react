@@ -1,6 +1,6 @@
 import axios, { AxiosRequestHeaders } from "axios";
 import proxy from "@/configs/host";
-const request = axios.create({
+export const request = axios.create({
     baseURL: proxy.development.API,
     timeout: 4000,
     withCredentials: true,
@@ -9,7 +9,7 @@ request.interceptors.request.use(
     config => {
         const token = localStorage.getItem("ncm-tk-dra");
         config.params = {
-            ...config.data,
+            ...config.params,
 
             realIP: "192.168.130.132",
             id: "11121",
@@ -26,7 +26,7 @@ request.interceptors.request.use(
         return Promise.reject(err);
     },
 );
-request.interceptors.response.use(
+request.interceptors.response.use<any>(
     res => {
         if (res.status === 200) {
             return res.data;
@@ -38,4 +38,3 @@ request.interceptors.response.use(
         Promise.reject(err);
     },
 );
-export default request;
