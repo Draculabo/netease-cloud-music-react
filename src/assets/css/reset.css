@@ -40,10 +40,6 @@ a {
     color: #666;
 }
 
-a:hover {
-    color: #fff;
-}
-
 i,
 em {
     font-style: normal;
@@ -62,6 +58,10 @@ a {
     line-height: 1.6;
 }
 
+a:hover {
+    color: inherit;
+}
+
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -71,6 +71,7 @@ img {
     border: none;
     vertical-align: middle;
 }
+
 
 /* 全局样式 */
 
