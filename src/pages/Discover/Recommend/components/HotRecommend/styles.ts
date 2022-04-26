@@ -14,7 +14,6 @@ export const HotHeader = styled.div`
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #c10d0c;
-    margin-right: 251px;
     a {
         color: #000;
     }
@@ -26,7 +25,6 @@ export const HeaderLeft = styled.div`
     .hc-header {
         font-size: 20px;
         &:hover {
-            color: initial;
             text-decoration: none;
         }
     }
@@ -53,5 +51,4 @@ export const HotList = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-right: 251px;
 `;
