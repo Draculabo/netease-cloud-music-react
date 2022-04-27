@@ -16,6 +16,20 @@ export const ModuleHeader = styled.div`
             text-decoration: underline;
         }
     }
+    .hc-more {
+        position: relative;
+        margin-right: 20px;
+        &::after {
+            position: absolute;
+            top: 50%;
+            right: -15px;
+            transform: translate(0, -50%);
+            content: "";
+            background: url(${sprite02}) no-repeat 0 -240px;
+            width: 12px;
+            height: 12px;
+        }
+    }
 `;
 export const HeaderLeft = styled.div`
     display: flex;
@@ -24,7 +38,6 @@ export const HeaderLeft = styled.div`
     .hc-header {
         font-size: 20px;
         &:hover {
-            color: initial;
             text-decoration: none;
         }
     }
