@@ -46,18 +46,13 @@ export const FooterLeft = styled.div`
     }
 `;
 export const FooterRight = styled.div`
-    ul {
+    display: flex;
+    .unit {
         display: flex;
+        flex-direction: column;
+        align-items: center;
 
-        li {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            margin-right: 20px;
-        }
-    }
-    li {
+        margin-right: 20px;
         &:first-child .logo-amped {
             background-position: 0 -450px;
         }
