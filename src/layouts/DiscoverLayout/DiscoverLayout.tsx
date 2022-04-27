@@ -1,4 +1,4 @@
-import { disCoverMenu } from "@/configs/local-data";
+import { disCoverMenu } from "@/configs/linkData";
 import { memo } from "react";
 import { Outlet } from "react-router";
 import { NavLink } from "react-router-dom";

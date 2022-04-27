@@ -1,4 +1,4 @@
-import { footerImages, footerLinks } from "@/configs/local-data";
+import { footerImages, footerLinks } from "@/configs/linkData";
 import { memo } from "react";
 import { FooterLeft, FooterRight, FooterWrapper } from "./style";
 

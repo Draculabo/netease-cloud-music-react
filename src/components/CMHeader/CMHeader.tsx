@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { HeaderLeft, HeaderRight, HeaderWrapper } from "./style";
-import { headerLinks } from "@/configs/local-data";
+import { headerLinks } from "@/configs/linkData";
 export const CMHeader = memo(() => {
     return (
         <HeaderWrapper>
