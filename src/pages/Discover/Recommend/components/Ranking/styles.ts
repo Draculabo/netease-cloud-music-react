@@ -98,6 +98,7 @@ export const RankingListBottom = styled.dd`
         color: #c10d0c;
     }
     .item-link {
+        width: 15em;
         line-height: 32px;
         overflow: hidden;
         text-overflow: ellipsis;
