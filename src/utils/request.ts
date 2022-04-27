@@ -2,7 +2,7 @@ import axios, { AxiosRequestHeaders } from "axios";
 import proxy from "@/configs/host";
 export const request = axios.create({
     baseURL: proxy.development.API,
-    timeout: 4000,
+    timeout: 10000,
     withCredentials: true,
 });
 request.interceptors.request.use(
@@ -10,9 +10,7 @@ request.interceptors.request.use(
         const token = localStorage.getItem("ncm-tk-dra");
         config.params = {
             ...config.params,
-
             realIP: "192.168.130.132",
-            id: "11121",
         };
 
         if (token !== null) {
