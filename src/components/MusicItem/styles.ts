@@ -4,6 +4,9 @@ import spriteCover from "@/assets/img/sprite_cover.png";
 export const HRWrapper = styled.div`
     margin: 20px 0 0 20px;
     width: 140px;
+    &:nth-child(4n + 1) {
+        margin-left: 0;
+    }
 `;
 export const AlbumCover = styled.div`
     position: relative;
@@ -64,7 +67,8 @@ export const AlbumDesc = styled.a`
     display: block;
     font-size: 14px;
     margin-top: 6px;
+    color: #000;
     &:hover {
-        color: inherit;
+        text-decoration: underline;
     }
 `;
