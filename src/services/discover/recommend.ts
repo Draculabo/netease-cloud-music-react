@@ -56,3 +56,19 @@ export function getPlayListDetail(id: string, s?: number) {
         },
     });
 }
+/**
+ * 获取歌手分类列表
+ * @param offset 偏移数量，用于分页 , 如 : 如 :( 页数 -1)*30, 其中 30 为 limit 的值
+ * @param limit 返回数量 , 默认为 30
+ * @returns
+ */
+export function getArtistList(offset = 0, limit = 5) {
+    return request({
+        url: "/artist/list",
+        method: "get",
+        params: {
+            offset,
+            limit,
+        },
+    });
+}
