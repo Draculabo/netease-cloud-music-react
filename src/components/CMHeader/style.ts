@@ -23,9 +23,15 @@ export const HeaderWrapper = styled.div`
         height: 5px;
         background-color: #c20c0c;
     }
+    a {
+        &:hover {
+            text-decoration: none;
+        }
+    }
 `;
 export const HeaderLeft = styled.div`
     display: flex;
+
     > a {
         position: relative;
 
@@ -33,6 +39,10 @@ export const HeaderLeft = styled.div`
         line-height: 50px;
         padding: 10px 20px;
         color: #eee;
+        &:hover {
+            color: #fff;
+            background-color: #000;
+        }
     }
     sub {
         content: "";
@@ -44,12 +54,7 @@ export const HeaderLeft = styled.div`
         border-bottom-color: #f00;
         transform: translate(-50%, 0);
     }
-    > a {
-        &:hover {
-            color: #fff;
-            background-color: #000;
-        }
-    }
+
     .active {
         color: #fff;
         background-color: #000;

@@ -60,6 +60,7 @@ a {
 
 a:hover {
     color: inherit;
+    text-decoration: underline;
 }
 
 table {
@@ -71,7 +72,6 @@ img {
     border: none;
     vertical-align: middle;
 }
-
 
 /* 全局样式 */
 

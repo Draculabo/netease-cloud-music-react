@@ -23,6 +23,7 @@ export const DiscoverTabWrapper = styled.div`
         }
         &:hover {
             background-color: #9b0909;
+            text-decoration: none;
         }
     }
 `;
