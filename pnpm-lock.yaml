@@ -17,6 +17,7 @@ specifiers:
   "@types/node": ^16.11.26
   "@types/react": ^17.0.43
   "@types/react-dom": ^17.0.14
+  "@types/react-slick": ^0.23.8
   "@types/styled-components": ^5.1.25
   "@typescript-eslint/eslint-plugin": ^5.17.0
   "@typescript-eslint/parser": ^5.17.0
@@ -51,8 +52,10 @@ specifiers:
   react-router: ^6.3.0
   react-router-dom: ^6.3.0
   react-scripts: 5.0.0
+  react-slick: ^0.28.1
   react-thunk: ^1.0.0
   redux: ^4.1.2
+  slick-carousel: ^1.8.1
   styled-components: ^5.3.5
   stylelint-config-selling: ^0.0.3
   typescript: ^4.6.3
@@ -69,6 +72,7 @@ dependencies:
   "@types/node": registry.npmmirror.com/@types/node/16.11.26
   "@types/react": registry.npmmirror.com/@types/react/17.0.43
   "@types/react-dom": registry.npmmirror.com/@types/react-dom/17.0.14
+  "@types/react-slick": registry.npmmirror.com/@types/react-slick/0.23.8
   "@types/styled-components": registry.npmmirror.com/@types/styled-components/5.1.25
   ahooks: registry.npmmirror.com/ahooks/3.3.0_react@18.0.0
   antd: registry.npmmirror.com/antd/4.19.5_react-dom@18.0.0+react@18.0.0
@@ -83,8 +87,10 @@ dependencies:
   react-router: registry.npmmirror.com/react-router/6.3.0_react@18.0.0
   react-router-dom: registry.npmmirror.com/react-router-dom/6.3.0_react-dom@18.0.0+react@18.0.0
   react-scripts: registry.npmmirror.com/react-scripts/5.0.0_456106bf6aa151672f2a91827453ffb8
+  react-slick: registry.npmmirror.com/react-slick/0.28.1_react-dom@18.0.0+react@18.0.0
   react-thunk: registry.npmmirror.com/react-thunk/1.0.0_react@18.0.0
   redux: registry.npmmirror.com/redux/4.1.2
+  slick-carousel: registry.npmmirror.com/slick-carousel/1.8.1
   styled-components: registry.npmmirror.com/styled-components/5.3.5_1a79be909b93ec9b98501cf963be33c8
   typescript: registry.npmmirror.com/typescript/4.6.3
   web-vitals: registry.npmmirror.com/web-vitals/2.1.4
@@ -4599,6 +4605,19 @@ packages:
       "@types/react": registry.npmmirror.com/@types/react/17.0.43
       hoist-non-react-statics: registry.npmmirror.com/hoist-non-react-statics/3.3.2
       redux: registry.npmmirror.com/redux/4.1.2
+    dev: false
+
+  registry.npmmirror.com/@types/react-slick/0.23.8:
+    resolution:
+      {
+        integrity: sha512-SfzSg++/3uyftVZaCgHpW+2fnJFsyJEQ/YdsuqfOWQ5lqUYV/gY/UwAnkw4qksCj5jalto/T5rKXJ8zeFldQeA==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/@types/react-slick/-/react-slick-0.23.8.tgz,
+      }
+    name: "@types/react-slick"
+    version: 0.23.8
+    dependencies:
+      "@types/react": registry.npmmirror.com/@types/react/17.0.43
     dev: false
 
   registry.npmmirror.com/@types/react/17.0.43:
@@ -9200,6 +9219,17 @@ packages:
     dependencies:
       graceful-fs: registry.npmmirror.com/graceful-fs/4.2.9
       tapable: registry.npmmirror.com/tapable/2.2.1
+    dev: false
+
+  registry.npmmirror.com/enquire.js/2.1.6:
+    resolution:
+      {
+        integrity: sha512-/KujNpO+PT63F7Hlpu4h3pE3TokKRHN26JYmQpPyjkRD/N57R7bPDNojMXdi7uveAKjYB7yQnartCxZnFWr0Xw==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/enquire.js/-/enquire.js-2.1.6.tgz,
+      }
+    name: enquire.js
+    version: 2.1.6
     dev: false
 
   registry.npmmirror.com/entities/1.1.2:
@@ -18596,6 +18626,29 @@ packages:
       - webpack-plugin-serve
     dev: false
 
+  registry.npmmirror.com/react-slick/0.28.1_react-dom@18.0.0+react@18.0.0:
+    resolution:
+      {
+        integrity: sha512-JwRQXoWGJRbUTE7eZI1rGIHaXX/4YuwX6gn7ulfvUZ4vFDVQAA25HcsHSYaUiRCduTr6rskyIuyPMpuG6bbluw==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/react-slick/-/react-slick-0.28.1.tgz,
+      }
+    id: registry.npmmirror.com/react-slick/0.28.1
+    name: react-slick
+    version: 0.28.1
+    peerDependencies:
+      react: ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0
+      react-dom: ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0
+    dependencies:
+      classnames: registry.npmmirror.com/classnames/2.3.1
+      enquire.js: registry.npmmirror.com/enquire.js/2.1.6
+      json2mq: registry.npmmirror.com/json2mq/0.2.0
+      lodash.debounce: registry.npmmirror.com/lodash.debounce/4.0.8
+      react: registry.npmmirror.com/react/18.0.0
+      react-dom: registry.npmmirror.com/react-dom/18.0.0_react@18.0.0
+      resize-observer-polyfill: registry.npmmirror.com/resize-observer-polyfill/1.5.1
+    dev: false
+
   registry.npmmirror.com/react-thunk/1.0.0_react@18.0.0:
     resolution:
       {
@@ -19862,6 +19915,19 @@ packages:
       ansi-styles: registry.npmmirror.com/ansi-styles/6.1.0
       is-fullwidth-code-point: registry.npmmirror.com/is-fullwidth-code-point/4.0.0
     dev: true
+
+  registry.npmmirror.com/slick-carousel/1.8.1:
+    resolution:
+      {
+        integrity: sha512-XB9Ftrf2EEKfzoQXt3Nitrt/IPbT+f1fgqBdoxO3W/+JYvtEOW6EgxnWfr9GH6nmULv7Y2tPmEX3koxThVmebA==,
+        registry: https://registry.npm.taobao.org/,
+        tarball: https://registry.npmmirror.com/slick-carousel/-/slick-carousel-1.8.1.tgz,
+      }
+    name: slick-carousel
+    version: 1.8.1
+    peerDependencies:
+      jquery: ">=1.8.0"
+    dev: false
 
   registry.npmmirror.com/sockjs/0.3.24:
     resolution:
