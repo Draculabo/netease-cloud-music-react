@@ -1,9 +1,15 @@
-import axios, { AxiosRequestHeaders } from "axios";
+import axios, { AxiosAdapter, AxiosRequestHeaders } from "axios";
 import proxy from "@/configs/host";
+import { cacheAdapterEnhancer } from "./cacheAdapter";
+
 export const request = axios.create({
     baseURL: proxy.development.API,
     timeout: 10000,
     withCredentials: true,
+    adapter: cacheAdapterEnhancer(axios.defaults.adapter as AxiosAdapter, {
+        cache: true,
+        expire: 3000,
+    }),
 });
 request.interceptors.request.use(
     config => {
@@ -16,7 +22,7 @@ request.interceptors.request.use(
         if (token !== null) {
             (config.headers as AxiosRequestHeaders)["Authorization"] = token;
         }
-        return config;
+        return Promise.resolve(config);
     },
     err => {
         console.log(err);
@@ -24,7 +30,7 @@ request.interceptors.request.use(
         return Promise.reject(err);
     },
 );
-request.interceptors.response.use<any>(
+request.interceptors.response.use(
     res => {
         if (res.status === 200) {
             return res.data;
