@@ -3,18 +3,13 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "@/utils/hooks";
 import { getBanners } from "@/stores";
 import { Carousel } from "antd";
-import {
-    BannerRight,
-    CarouselWrapper,
-    CArrow,
-    CBannerContainer,
-    CBannerWrapper,
-    CImg,
-} from "./styles";
+import { BannerRight, CarouselWrapper, CBannerContainer, CBannerWrapper, CImg } from "./style";
 import { CarouselRef } from "antd/lib/carousel";
+import { CArrow } from "@/components";
 export const RecommendCarousel: React.MemoExoticComponent<() => JSX.Element> = memo(() => {
     const banners = useSelector(state => state.recommend.banners);
     const [index, setIndex] = useState(0);
+
     const carouselRef = useRef<CarouselRef>(null);
     const dispatch = useDispatch();
     useEffect(() => {
@@ -61,8 +56,8 @@ export const RecommendCarousel: React.MemoExoticComponent<() => JSX.Element> = m
                     <a href=""></a>
                     <p>PC 安卓 iPhone WP iPad Mac 六大客户端</p>
                 </BannerRight>
-                <CArrow onClick={changePrev} pos={"left"} />
-                <CArrow onClick={changeNext} pos={"right"} />
+                <CArrow onClick={changePrev} className="carousel-arrow left-arrow" />
+                <CArrow onClick={changeNext} className="carousel-arrow  right-arrow" />
             </CBannerWrapper>
         </CBannerContainer>
     );

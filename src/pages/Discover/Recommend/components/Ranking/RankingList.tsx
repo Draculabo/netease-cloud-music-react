@@ -2,7 +2,7 @@ import { getPlayListDetail } from "@/services";
 import { useRequest } from "ahooks";
 import { Skeleton } from "antd";
 import { memo, useState } from "react";
-import { RankingListBottom, RankingListTop, RankingListWrapper } from "./styles";
+import { RankingListBottom, RankingListTop, RankingListWrapper } from "./style";
 interface RankingListProps {
     title: string;
     id: string;

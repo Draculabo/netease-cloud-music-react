@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import bannerSprite from "@/assets/img/banner_sprite.png";
 import download from "@/assets/img/download.png";
+
+import bannerSprite from "@/assets/img/banner_sprite.png";
 export const CBannerContainer = styled.div`
     background: url(${(props: { bgImage: string }) => props.bgImage}) center center no-repeat;
 
@@ -12,6 +13,28 @@ export const CBannerWrapper = styled.div`
     position: relative;
 
     display: flex;
+    .carousel-arrow {
+        position: absolute;
+
+        top: 50%;
+
+        background: url(${bannerSprite}) no-repeat;
+        transform: translate(0, -50%);
+    }
+    .left-arrow {
+        left: -74px;
+        background-position: 0 -358px;
+        &:hover {
+            background-position: 0 -428px;
+        }
+    }
+    .right-arrow {
+        right: -74px;
+        background-position: 0 -507px;
+        &:hover {
+            background-position: 0 -576px;
+        }
+    }
 `;
 
 export const CarouselWrapper = styled.div`
@@ -42,21 +65,4 @@ export const BannerRight = styled.div`
 `;
 export const CImg = styled.img`
     height: 285px;
-`;
-interface Pos {
-    pos: "left" | "right";
-}
-export const CArrow = styled.a`
-    background: url(${bannerSprite}) no-repeat;
-    position: absolute;
-    left: ${(props: Pos) => (props.pos == "left" ? "-74px" : "initial")};
-    right: ${(props: Pos) => (props.pos == "right" ? "-74px" : "initial")};
-    background-position: 0 ${(props: Pos) => (props.pos == "left" ? "-358px" : "-507px")};
-    top: 50%;
-    transform: translate(0, -50%);
-    width: 37px;
-    height: 63px;
-    &:hover {
-        background-position: 0 ${(props: Pos) => (props.pos == "left" ? "-430px" : "-578px")};
-    }
 `;

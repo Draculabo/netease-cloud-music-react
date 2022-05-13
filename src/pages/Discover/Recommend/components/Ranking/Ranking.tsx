@@ -4,7 +4,7 @@ import { useRequest } from "ahooks";
 import { Skeleton } from "antd";
 import { memo, useState } from "react";
 import { RankingList } from "./RankingList";
-import { RankingWrapper } from "./styles";
+import { RankingWrapper } from "./style";
 export const Ranking: React.MemoExoticComponent<() => JSX.Element> = memo(() => {
     const [idList, setIdList] = useState<any[]>([]);
     const { data, loading } = useRequest<any, any>(getTopList, {

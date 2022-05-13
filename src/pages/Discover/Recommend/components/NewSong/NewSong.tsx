@@ -3,7 +3,7 @@ import { getTopAlbum } from "@/services/discover/recommend";
 import { splitArray } from "@/utils";
 import { useRequest } from "ahooks";
 import { memo, useEffect, useMemo, useRef, useState } from "react";
-import { RArrow, LArrow, NewSongWrapper, RollItem } from "./styles";
+import { RArrow, LArrow, NewSongWrapper, RollItem } from "./style";
 import Slider from "react-slick";
 // import { data } from "@/mock/NewSong";
 import "slick-carousel/slick/slick.css";

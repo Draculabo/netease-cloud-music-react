@@ -6,7 +6,7 @@ import {
     RecommendSinger,
     HotAnchor,
 } from "./components";
-import { DiscovertLeft, DiscovertRight, DiscovertWrapper, UserInfo } from "./styles";
+import { DiscovertLeft, DiscovertRight, DiscovertWrapper, UserInfo } from "./style";
 
 export const Recommend: React.FC = () => {
     return (
