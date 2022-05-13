@@ -1,6 +1,6 @@
 import { formatCount } from "@/utils";
 import { memo } from "react";
-import { AlbumCover, AlbumDesc, HMBottom, HRTop, HRWrapper } from "./styles";
+import { AlbumCover, AlbumDesc, HMBottom, HRTop, HRWrapper } from "./style";
 interface Props {
     rc: any;
 }

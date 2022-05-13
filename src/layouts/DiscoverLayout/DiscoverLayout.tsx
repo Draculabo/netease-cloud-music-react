@@ -3,7 +3,7 @@ import { memo } from "react";
 import { Outlet } from "react-router";
 import { NavLink } from "react-router-dom";
 import { BasicLayout } from "../BasicLayout";
-import { DiscoverTabWrapper } from "./styles";
+import { DiscoverTabWrapper } from "./style";
 export const DisCoverLayout: React.MemoExoticComponent<() => JSX.Element> = memo(() => {
     return (
         <BasicLayout>

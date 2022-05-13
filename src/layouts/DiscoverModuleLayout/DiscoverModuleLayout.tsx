@@ -1,5 +1,5 @@
 import { memo, ReactNode } from "react";
-import { HeaderLeft, ModuleHeader, ModuleWrapper } from "./styles";
+import { HeaderLeft, ModuleHeader, ModuleWrapper } from "./style";
 interface Props {
     children?: ReactNode;
     title: string;
