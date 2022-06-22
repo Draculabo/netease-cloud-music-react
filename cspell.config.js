@@ -38,6 +38,7 @@ module.exports = {
         "autorun", // mobx
         "Lngs", // i18next params
         "languagedetector", // i18next-browser-languagedetector package
+        "reduxjs", //  redux
         "uuidv", // uuidv4
         "Scroller", // react-virtualized
         "bpfrpt", // react-virtualized

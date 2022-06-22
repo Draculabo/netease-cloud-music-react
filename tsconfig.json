@@ -10,7 +10,7 @@
     "rootDir": "./", // 指定输出文件目录(用于输出)，用于控制输出目录结构
 
     "typeRoots": [], // 声明文件目录，默认时node_modules/@types
-    "types": [], // 加载的声明文件包
+    "types": ["node"], // 加载的声明文件包
     "removeComments": true, // 删除注释
     "importHelpers": true, // 通过tslib引入helper函数，文件必须是模块
     "downlevelIteration": true, // 降级遍历器实现，如果目标源是es3/5，那么遍历器会有降级的实现
