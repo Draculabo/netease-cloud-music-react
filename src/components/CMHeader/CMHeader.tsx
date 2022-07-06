@@ -38,7 +38,7 @@ export const CMHeader = memo(() => {
                     <a className="login">登录</a>
                 </HeaderRight>
             </div>
-            <div className="divider"></div>
+            <div className="divider bg-red-default"></div>
         </HeaderWrapper>
     );
 });

@@ -7,7 +7,7 @@ import { DiscoverTabWrapper } from "./style";
 export const DisCoverLayout: React.MemoExoticComponent<() => JSX.Element> = memo(() => {
     return (
         <BasicLayout>
-            <DiscoverTabWrapper>
+            <DiscoverTabWrapper className="bg-red-default">
                 <div className="wrap-v2">
                     {disCoverMenu.map((value, index) => {
                         return (

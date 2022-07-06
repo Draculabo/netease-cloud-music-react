@@ -21,7 +21,6 @@ export const HeaderWrapper = styled.div`
     }
     .divider {
         height: 5px;
-        background-color: #c20c0c;
     }
     a {
         &:hover {

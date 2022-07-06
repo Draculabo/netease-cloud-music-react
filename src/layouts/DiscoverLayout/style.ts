@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const DiscoverTabWrapper = styled.div`
     height: 35px;
-    background-color: #c20c0c;
     .wrap-v2 {
         display: flex;
         align-items: center;
