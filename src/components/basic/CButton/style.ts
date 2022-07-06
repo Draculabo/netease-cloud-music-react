@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import spriteButton from "@/assets/img/sprite_button.png";
-export const CButtonWrapper = styled.a`
+export const CButtonWrapper = styled.button`
     position: relative;
     background: url(${spriteButton}) no-repeat 0 -977px;
     height: 31px;
