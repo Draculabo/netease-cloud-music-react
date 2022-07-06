@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "~normalize.css";
 @import "~antd/dist/antd.css";
 
@@ -87,9 +90,11 @@ button {
 }
 
 .text-nowrap {
+    position: relative;
+    zoom: 1;
+    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
 }
 
 .wrap-v1 {
