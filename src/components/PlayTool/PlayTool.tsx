@@ -1,7 +1,15 @@
-import { formatToMinuteSecond, useSelector } from "@/utils";
+import { playerAction } from "@/stores/player";
+import {
+    formatToMinuteSecond,
+    useDispatch,
+    useSelector,
+    useTogglePLDisplay,
+    useToggleMusic,
+} from "@/utils";
 import { Slider } from "antd";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { shallowEqual } from "react-redux";
+import PlayList from "./PlayList";
 import {
     AudioOperate,
     MusicImage,
@@ -10,20 +18,21 @@ import {
     PlayToolWrapper,
     SongOperate,
 } from "./style";
+import VolumeSlider from "../basic/VolumeSlider/VolumeSlider";
 export const PlayTool = memo(() => {
     const player = useSelector(state => state.player, shallowEqual);
+    const dispatch = useDispatch();
+    const togglePl = useTogglePLDisplay();
+    const toggleMusic = useToggleMusic();
+
+    const [volume, setVolume] = useState(0.2);
     const audioRef = useRef<HTMLAudioElement | null>(null);
-    // 是否在播放
-    const [playing, setPlaying] = useState(false);
     // 当前进度条长度
     const [progress, setProgress] = useState(0);
-    // 当前播放时间
-    const [currentTime, setCurrentTime] = useState(0);
     // 歌曲长度
     const [duration, setDuration] = useState(0);
     // 是否拖拽进度条
     const [dragging, setDragging] = useState(false);
-
     useEffect(() => {
         if (audioRef.current !== null) {
             // 注册事件
@@ -34,38 +43,81 @@ export const PlayTool = memo(() => {
             audioRef.current?.removeEventListener("canplay", setDurationEvent);
         };
     }, []);
-    const setDurationEvent = () => {
+    /* 在播放器播放时播放音频。 */
+    useEffect(() => {
+        if (audioRef.current !== null && player.playing) {
+            audioRef.current.play();
+        }
+    }, [audioRef, player.playing]);
+    useEffect(() => {
+        if (audioRef.current) {
+            audioRef.current.volume = volume;
+        }
+    }, [volume]);
+    /**
+     *  拖拽音量播放条
+     */
+    const volumeChangeHandler = value => {
+        const volumeRate = value / 100;
+        if (volumeRate > 0.01 && volumeRate <= 1) {
+            setVolume(volumeRate);
+        } else if (volumeRate <= 0.01) {
+            setVolume(0);
+        } else {
+            setVolume(1);
+        }
+    };
+    /**
+     * 加载音频元素时，将音频元素的持续时间设置为状态变量持续时间。
+     */
+    const setDurationEvent = useCallback(() => {
         if (audioRef.current !== null) {
             setDuration(audioRef.current.duration * 1000);
         }
-    };
+    }, [audioRef]);
     /**
      * 控制音频是否播放
      */
-    const playAction = () => {
+    const changePlayAction = useCallback(() => {
         if (audioRef.current !== null) {
             if (audioRef.current.paused) {
                 audioRef.current.play();
-                setPlaying(true);
+                dispatch(playerAction.play());
             } else {
                 audioRef.current.pause();
-                setPlaying(false);
+                dispatch(playerAction.pause());
             }
         }
-    };
+    }, [audioRef, dispatch]);
+    /**
+     * 滑动歌词效果
+     */
+    const setActiveLyric = useCallback(() => {
+        const currentSong = player.currentSong;
+        const time = currentSong?.currentTime;
+        const index = currentSong?.lyrics.findIndex((item, i) => {
+            const seconds = item.time || 0;
+            const duration = currentSong?.lyrics[i + 1]?.time ?? 0;
+            // 提前500ms滑动歌词
+            return time >= seconds - 500 && time < duration - 500;
+        });
+        dispatch(playerAction.setLyricInex(index));
+    }, [audioRef, player.currentSong?.lyrics, player.currentSong?.currentTime]);
     /**
      * 音频播放事件
      */
-    const playingEvent = () => {
+    const playingEvent = useCallback(() => {
         if (audioRef.current !== null) {
             if (!dragging) {
-                setCurrentTime(audioRef.current.currentTime * 1000);
+                dispatch(playerAction.setCurrentTime(audioRef.current.currentTime * 1000));
                 setProgress(
                     Math.floor((audioRef.current.currentTime / audioRef.current.duration) * 100),
                 );
+                setActiveLyric();
             }
         }
-    };
+    }, [audioRef, dragging, dispatch, setActiveLyric]);
+
     /**
      * 拖拽进度条
      */
@@ -73,9 +125,10 @@ export const PlayTool = memo(() => {
         (value: number) => {
             setDragging(true);
             setProgress(value);
-            setCurrentTime((value * duration) / 100);
+            dispatch(playerAction.setCurrentTime((value * duration) / 100));
+            setActiveLyric();
         },
-        [duration],
+        [duration, dispatch],
     );
     /**
      * 拖拽进度条抬起后
@@ -85,11 +138,11 @@ export const PlayTool = memo(() => {
             if (audioRef.current !== null) {
                 const currentTime = (value * duration) / 100;
                 audioRef.current.currentTime = currentTime / 1000;
-                setCurrentTime(currentTime);
+                dispatch(playerAction.setCurrentTime(currentTime));
                 setDragging(false);
-                if (audioRef.current.paused) {
+                if (audioRef.current.paused && !audioRef.current.src) {
                     audioRef.current.play();
-                    setPlaying(true);
+                    dispatch(playerAction.play());
                 }
             }
         },
@@ -97,24 +150,34 @@ export const PlayTool = memo(() => {
     );
     return (
         <PlayToolContainer>
+            <PlayList />
             <PlayToolWrapper className="wrap-v2">
                 <PlayOperate>
-                    <a href="#" className="prev"></a>
                     <a
                         href="#"
-                        className={playing ? "play-btn pause" : "play-btn play"}
-                        onClick={playAction}
+                        className="prev"
+                        onClick={() => toggleMusic(player.currentSongIndex - 1)}
                     ></a>
-                    <a href="#" className="next"></a>
+                    <a
+                        href="#"
+                        className={player.playing ? "play-btn pause" : "play-btn play"}
+                        onClick={changePlayAction}
+                    ></a>
+
+                    <a
+                        href="#"
+                        className="next"
+                        onClick={() => toggleMusic(player.currentSongIndex + 1)}
+                    ></a>
                 </PlayOperate>
-                <MusicImage url={player.currentDetail?.imageUrl} />
+                <MusicImage url={player.currentSong?.imageUrl} />
                 <div className="play-center">
                     <div className="play-info">
                         <a href="#" className="song-name">
-                            Nocturne No. 2 in E Flat Major, Op. 9, No. 2
+                            {player.currentSong?.title}
                         </a>
                         <a href="#" className="song-author">
-                            Arthur Rubinstein
+                            {player.currentSong?.author?.map(ar => ar.name).join("/")}
                         </a>
                     </div>
                     <div className="play-bar">
@@ -127,7 +190,7 @@ export const PlayTool = memo(() => {
                         />
                         <div className="time">
                             <span className="current-time">
-                                {formatToMinuteSecond(currentTime)}
+                                {formatToMinuteSecond(player.currentSong?.currentTime)}
                             </span>{" "}
                             {" / "}
                             <span className="duration">{formatToMinuteSecond(duration)}</span>
@@ -141,16 +204,32 @@ export const PlayTool = memo(() => {
                         <a href="#" className="share"></a>
                     </SongOperate>
                     <AudioOperate>
-                        <a className="volume" href="#"></a>
+                        <VolumeSlider
+                            vertical={true}
+                            value={volume * 100}
+                            total={100}
+                            defaultValue={30}
+                            className={player.volumeShow ? "block" : "hidden"}
+                            onChange={volumeChangeHandler}
+                        />
+
+                        <a
+                            className="volume"
+                            href="#"
+                            onClick={e => {
+                                e.preventDefault();
+                                dispatch(playerAction.toggleVolumeDisplay());
+                            }}
+                        ></a>
                         <a href="#" className="play-mode repeat"></a>
-                        <a href="#" className="play-list">
-                            33
+                        <a href="#" className="play-list" onClick={togglePl}>
+                            {player.playList?.length}
                         </a>
                     </AudioOperate>
                 </div>
                 <audio
                     ref={audioRef}
-                    src={player.currentDetail?.playUrl}
+                    src={player.currentSong?.playUrl}
                     onTimeUpdate={playingEvent}
                 />
             </PlayToolWrapper>

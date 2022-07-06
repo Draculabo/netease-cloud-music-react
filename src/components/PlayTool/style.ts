@@ -8,6 +8,7 @@ export const PlayToolContainer = styled.div`
     left: 0;
     bottom: 0;
     width: 100%;
+    z-index: 999;
     background: url(${playBarSprite}) repeat-x 0 -6px;
     height: 47px;
 `;
@@ -27,40 +28,41 @@ export const PlayToolWrapper = styled.div`
         align-items: center;
         justify-content: space-around;
         width: 550px;
+        .ant-slider {
+            flex: 1;
+            margin: 5px 0;
+            padding: 0;
+        }
+
+        .ant-slider-rail {
+            height: 9px;
+            background: url(${progressBar}) repeat-x 0 0;
+        }
+        .ant-slider-track {
+            height: 9px;
+            background: url(${progressBar}) repeat-x 0 -66px;
+        }
+        .ant-slider:hover .ant-slider-rail {
+            background-color: transparent;
+        }
+        .ant-slider-handle {
+            border: none;
+            &::before {
+                content: "";
+                background: url(${radioSlide}) no-repeat -37px -7px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 6px;
+                height: 6px;
+            }
+        }
     }
     .play-center {
         margin-left: 20px;
     }
-    .ant-slider {
-        width: 430px;
-        margin: 5px 0;
-        padding: 0;
-    }
 
-    .ant-slider-rail {
-        height: 9px;
-        background: url(${progressBar}) repeat-x 0 0;
-    }
-    .ant-slider-track {
-        height: 9px;
-        background: url(${progressBar}) repeat-x 0 -66px;
-    }
-    .ant-slider:hover .ant-slider-rail {
-        background-color: transparent;
-    }
-    .ant-slider-handle {
-        border: none;
-        &::before {
-            content: "";
-            background: url(${radioSlide}) no-repeat -37px -7px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: 6px;
-            height: 6px;
-        }
-    }
     .current-time {
         color: #a1a1a1;
     }
@@ -113,9 +115,11 @@ export const SongOperate = styled.div`
     }
 `;
 export const AudioOperate = styled.div`
+    position: relative;
     display: flex;
     align-items: center;
     background: url(${playBarSprite}) no-repeat -147px -238px;
+
     &:hover {
         text-decoration: none;
     }
@@ -164,6 +168,7 @@ export const MusicImage = styled.a`
     width: 34px;
     height: 35px;
     background-image: url(${(props: { url?: string }) => props.url});
+    background-size: 100% 100%;
     background-repeat: no-repeat;
 `;
 export const PlayOperate = styled.div`
