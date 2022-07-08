@@ -7,6 +7,7 @@ export const CButtonWrapper = styled.button`
     height: 31px;
     padding: 0 10px 0 30px;
     line-height: 31px;
+    cursor: pointer;
     &::after {
         position: absolute;
         content: "";
