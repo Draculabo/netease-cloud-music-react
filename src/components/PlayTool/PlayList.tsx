@@ -1,11 +1,11 @@
 import { memo } from "react";
 import { PlayListItem, PlayListWrapper } from "./playlist.style";
-import { useSelector } from "../../utils/hooks/useSelector";
 import { shallowEqual } from "react-redux";
 import { playerAction } from "../../stores/player/slice";
-import { formatToMinuteSecond, useDispatch } from "@/utils";
-import { useToggleMusic, useTogglePLDisplay } from "@/utils/hooks";
+import { formatToMinuteSecond } from "@/utils";
+import { useToggleMusic, useTogglePLDisplay, useDispatch, useSelector } from "@/utils/hooks";
 import { SongOfPlaylistType, SongDetail } from "@/stores/player";
+import NoData from "./NoData";
 interface PlSelectorType {
     playList: SongOfPlaylistType[];
     playListDisplay: boolean;
@@ -16,20 +16,23 @@ const PlayList = memo(() => {
     const dispatch = useDispatch();
     const togglePl = useTogglePLDisplay();
     const toggleMusic = useToggleMusic();
-    const plObj = useSelector<PlSelectorType>(state => {
-        return {
-            playList: state.player.playList,
-            playListDisplay: state.player.playListShow,
-            currentSongId: state.player.currentSong.id,
-            currentSong: state.player.currentSong,
-        };
-    }, shallowEqual);
+    const { playList, playListDisplay, currentSong, currentSongId } = useSelector<PlSelectorType>(
+        state => {
+            return {
+                playList: state.player.playList,
+                playListDisplay: state.player.playListShow,
+                currentSongId: state.player.currentSong.id,
+                currentSong: state.player.currentSong,
+            };
+        },
+        shallowEqual,
+    );
 
     return (
-        <PlayListWrapper className={plObj.playListDisplay ? "block" : "hidden"}>
+        <PlayListWrapper className={playListDisplay ? "block" : "hidden"}>
             <div className="play-list-header">
                 <div className="header-left">
-                    <div className="title">播放列表({plObj?.playList?.length})</div>
+                    <div className="title">播放列表({playList?.length})</div>
                     <div className="btns">
                         <div className="save-all-btn">
                             <span className="save-all-btn-icon"></span>
@@ -46,20 +49,20 @@ const PlayList = memo(() => {
                     </div>
                 </div>
                 <div className="header-right">
-                    <div className="song-name">{plObj?.currentSong?.title}</div>
+                    <div className="song-name">{currentSong?.title}</div>
                     <div className="close-btn" onClick={togglePl}></div>
                 </div>
             </div>
             <div className="play-list-content">
                 <div className="play-list-content-left">
-                    {(plObj?.playList || []).length > 0 ? (
+                    {(playList || []).length > 0 ? (
                         <div className="play-list">
-                            {plObj?.playList?.map((track, i) => {
+                            {playList?.map((track, i) => {
                                 return (
                                     <PlayListItem key={`${track.id}-${i}`}>
                                         <div
                                             className={`playing-icon ${
-                                                plObj.currentSongId === track.id ? "active" : ""
+                                                currentSongId === track.id ? "active" : ""
                                             }`}
                                             onClick={() => toggleMusic(i)}
                                         ></div>
@@ -69,9 +72,7 @@ const PlayList = memo(() => {
                                         <div className="operator-container"></div>
                                         <div
                                             className="singers text-nowrap"
-                                            title={plObj?.currentSong?.author
-                                                ?.map(ar => ar.name)
-                                                .join("/")}
+                                            title={track.author?.map(ar => ar.name).join("/")}
                                         >
                                             {track?.author?.map((ar, i) => (
                                                 <span key={`${ar.id}-${i}`}>{ar.name}</span>
@@ -89,18 +90,17 @@ const PlayList = memo(() => {
                             })}
                         </div>
                     ) : (
-                        "你还没有添加任何歌曲"
-                        // <NoData text="你还没有添加任何歌曲"></NoData>
+                        <NoData text="你还没有添加任何歌曲"></NoData>
                     )}
                 </div>
                 <div className="play-list-content-right">
                     <div className="lyric-list">
-                        {(plObj.currentSong?.lyrics || [])?.map((item, index) => {
+                        {(currentSong?.lyrics || [])?.map((item, i) => {
                             return (
-                                <div className="lyric-line" key={`${item.time}-{index}`}>
+                                <div className="lyric-line" key={i}>
                                     <p
                                         className={`${
-                                            plObj.currentSong.currentLyric === index ? "active" : ""
+                                            currentSong.currentLyric === i ? "active" : ""
                                         }`}
                                     >
                                         {item.content}

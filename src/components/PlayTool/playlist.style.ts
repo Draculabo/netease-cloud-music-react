@@ -81,7 +81,6 @@ export const PlayListWrapper = styled.div`
                 color: #fff;
                 width: 80%;
                 text-align: center;
-                /* @include ellipsis(); */
             }
             .close-btn {
                 position: absolute;
@@ -141,7 +140,7 @@ export const PlayListWrapper = styled.div`
                         color: #989898;
                         height: 32px;
                         line-height: 32px;
-                        /* @include ellipsis(); */
+
                         &.active {
                             color: #fff;
                         }
@@ -189,7 +188,6 @@ export const PlayListItem = styled.div`
     .song-name {
         width: 256px;
         color: #ccc;
-        /* @include ellipsis(); */
     }
     .operator-container {
         width: 88px;
@@ -198,7 +196,7 @@ export const PlayListItem = styled.div`
         width: 70px;
         color: #9b9b9b;
         white-space: nowrap;
-        /* @include ellipsis(); */
+
         span {
             cursor: pointer;
             a {

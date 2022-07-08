@@ -160,6 +160,7 @@ export const AudioOperate = styled.div`
         background: url(${playBarSprite}) no-repeat -43px -70px;
         &:hover {
             background-position-y: -100px;
+            text-decoration: none;
         }
     }
 `;

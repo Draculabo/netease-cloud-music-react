@@ -1,11 +1,6 @@
 import { playerAction } from "@/stores/player";
-import {
-    formatToMinuteSecond,
-    useDispatch,
-    useSelector,
-    useTogglePLDisplay,
-    useToggleMusic,
-} from "@/utils";
+import { useDispatch, useSelector, useTogglePLDisplay, useToggleMusic } from "@/utils/hooks";
+import { formatToMinuteSecond } from "@/utils";
 import { Slider } from "antd";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
 import { shallowEqual } from "react-redux";
@@ -36,7 +31,6 @@ export const PlayTool = memo(() => {
     useEffect(() => {
         if (audioRef.current !== null) {
             // 注册事件
-
             audioRef.current.addEventListener("canplay", setDurationEvent);
         }
         return () => {
@@ -231,6 +225,9 @@ export const PlayTool = memo(() => {
                     ref={audioRef}
                     src={player.currentSong?.playUrl}
                     onTimeUpdate={playingEvent}
+                    onEnded={() => {
+                        toggleMusic(player.currentSongIndex + 1);
+                    }}
                 />
             </PlayToolWrapper>
         </PlayToolContainer>
