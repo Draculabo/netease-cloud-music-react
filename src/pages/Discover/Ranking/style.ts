@@ -6,5 +6,7 @@ export const RankingWrapper = styled.div`
 `;
 
 export const RankingRightWrapper = styled.div`
+    width: 740px;
+    flex: 1;
     padding: 0 40px;
 `;

@@ -40,18 +40,16 @@ export const RankingInformationRight = styled.div`
 export const OperateWrapper = styled.div`
     display: flex;
     margin-top: 10px;
-    a {
-        margin-left: 10px;
-        &:hover {
-            text-decoration: none;
-        }
+    button {
+        margin-right: 5px;
     }
-
     .playing {
         background-position: 0 -633px;
         color: #fff;
         margin-left: 0;
         padding-left: 35px;
+        margin-right: 0;
+
         &::after {
             position: static;
         }

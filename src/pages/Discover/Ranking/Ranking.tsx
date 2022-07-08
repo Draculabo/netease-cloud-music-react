@@ -1,8 +1,6 @@
-import { getPlayListDetail, getTopList } from "@/services";
-import { splitArray, useDispatch } from "@/utils";
+import { getPlayListDetail } from "@/services";
 import { useRequest } from "ahooks";
 import { Skeleton } from "antd";
-import { runMain } from "module";
 import { memo, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { RankingInformation, RankingTable } from "./components";
@@ -11,38 +9,38 @@ import { RankingRightWrapper, RankingWrapper } from "./style";
 
 const Ranking = memo(() => {
     const [playList, setPlayList] = useState<any>(null);
-    const [rankingInfo, _] = useState<any>(null);
     const { id = "19723756" } = useParams();
     const { loading: rankingLoading, run: rankingDetailRun } = useRequest<any, any>(
         () => getPlayListDetail(id),
         {
             onSuccess(res) {
-                if (!res) {
-                    return;
-                }
-
-                console.log(res.playlist);
-                setPlayList(res.playlist);
+                setPlayList(res?.playlist);
             },
+            retryCount: 3,
+            retryInterval: 3000,
         },
     );
 
     useEffect(() => {
         rankingDetailRun();
     }, [id]);
-    if (rankingLoading) {
-        return <Skeleton loading />;
-    }
+
     return (
         <RankingWrapper className="wrap-v2">
             <RankingLeft />
             <RankingRightWrapper>
-                <RankingInformation updateStr={rankingInfo?.updateFrequency} info={playList} />
-                <RankingTable
-                    playCount={playList.playCount}
-                    trackCount={playList.trackCount}
-                    list={playList.tracks}
-                />
+                {rankingLoading ? (
+                    <Skeleton loading />
+                ) : (
+                    <>
+                        <RankingInformation info={playList} />
+                        <RankingTable
+                            playCount={playList?.playCount}
+                            trackCount={playList?.trackCount}
+                            list={playList?.tracks}
+                        />
+                    </>
+                )}
             </RankingRightWrapper>
         </RankingWrapper>
     );

@@ -1,8 +1,12 @@
-import { memo } from "react";
+import { lazy, memo, ReactNode, Suspense } from "react";
 import { Navigate, RouteObject, useRoutes } from "react-router";
 import { BasicLayout } from "./layouts";
 import { DisCoverLayout } from "./layouts/DiscoverLayout";
-import { Chart, Friend, Mine, NewSongs, PlayList, Radio, Recommend, Singer } from "./pages";
+import { Friend, Mine, NewSongs, PlayList, Radio, Recommend, Singer } from "./pages";
+const Ranking = lazy(() => import("./pages/Discover/Ranking/Ranking"));
+const lazyLoad = (child: ReactNode): ReactNode => {
+    return <Suspense fallback={<>loading...</>}>{child}</Suspense>;
+};
 export const RenderRoute = memo(() => {
     const routes: RouteObject[] = [
         {
@@ -23,9 +27,15 @@ export const RenderRoute = memo(() => {
                     path: "recommend/*",
                     element: <Recommend />,
                 },
+
                 {
-                    path: "chart/*",
-                    element: <Chart />,
+                    path: "chart",
+
+                    element: lazyLoad(<Ranking />),
+                },
+                {
+                    path: "chart/:id",
+                    element: lazyLoad(<Ranking />),
                 },
                 {
                     path: "playlist/*",

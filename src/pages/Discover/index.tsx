@@ -1,4 +1,4 @@
-export * from "./Chart";
+export * from "./Ranking";
 export * from "./NewSongs";
 export * from "./PlayList";
 export * from "./Radio";

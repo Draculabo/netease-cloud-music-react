@@ -1,6 +1,3 @@
-import { getTopList } from "@/services";
-import { useRequest } from "ahooks";
-import { Skeleton } from "antd";
 import { memo, PropsWithChildren } from "react";
 import { RankingList } from "../RankingLIst";
 interface CMSpecialRankingProps {
