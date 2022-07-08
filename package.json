@@ -6,6 +6,8 @@
     "@ant-design/icons": "^4.7.0",
     "@craco/craco": "^6.4.3",
     "@reduxjs/toolkit": "^1.8.1",
+    "@sentry/react": "^7.5.1",
+    "@sentry/tracing": "^7.5.1",
     "@tanstack/react-virtual": "3.0.0-beta.2",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
