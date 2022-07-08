@@ -1,5 +1,5 @@
-import { memo, useEffect, useMemo, useRef } from "react";
-import { HeaderLeft, HotHeader, HotList, HotRecommendWrapper } from "./style";
+import { memo, useMemo } from "react";
+import { HotList } from "./style";
 import { useRequest } from "ahooks";
 import { MusicItem } from "@/components";
 import { getRecommendList } from "@/services/discover/recommend";

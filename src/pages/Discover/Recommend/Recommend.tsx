@@ -8,7 +8,7 @@ import {
 } from "./components";
 import { DiscovertLeft, DiscovertRight, DiscovertWrapper, UserInfo } from "./style";
 
-export const Recommend: React.FC = () => {
+const Recommend: React.FC = () => {
     return (
         <>
             {/* 轮播图 */}
@@ -43,3 +43,4 @@ export const Recommend: React.FC = () => {
         </>
     );
 };
+export default Recommend;

@@ -2,7 +2,7 @@ import { getArtistList } from "@/services";
 import { useRequest } from "ahooks";
 import { Skeleton } from "antd";
 import { memo } from "react";
-import { DiscoverSidebarLayout } from "../../layouts/SidebarLayout";
+import { DiscoverSidebarLayout } from "@/layouts/SidebarLayout";
 import { ApplicationButton, RecommendSingerWrapper, SingerItem } from "./style";
 export const RecommendSinger = memo(() => {
     const { data, loading } = useRequest<any, any>(() => getArtistList());

@@ -1,1 +1,3 @@
-export * from "./Recommend";
+import Recommend from "./Recommend";
+
+export default Recommend;

@@ -9,18 +9,18 @@ export const Ranking: React.MemoExoticComponent<() => JSX.Element> = memo(() => 
     const [idList, setIdList] = useState<any[]>([]);
     useRequest<any, any>(getTopList, {
         onSuccess(res) {
-            const condition: string[] = ["飙升榜", "原创榜", "新歌榜"];
-            const data = res.list.filter(value => condition.includes(value.name));
+            const condition = ["飙升榜", "原创榜", "新歌榜"];
+            const data = res?.list?.filter(value => condition.includes(value.name));
             setIdList(data);
         },
     });
     return (
         <DiscoverModuleLayout title="榜单">
-            {idList.length !== 3 ? (
+            {idList?.length !== 3 ? (
                 <Skeleton loading />
             ) : (
                 <RankingWrapper>
-                    {idList.map(ranking => {
+                    {idList?.map(ranking => {
                         return (
                             <DiscoverRankingList
                                 key={ranking.id}

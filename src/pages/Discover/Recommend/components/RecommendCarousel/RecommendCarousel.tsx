@@ -13,7 +13,7 @@ export const RecommendCarousel: React.MemoExoticComponent<() => JSX.Element> = m
     const carouselRef = useRef<CarouselRef>(null);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(getBanners());
+        dispatch(getBanners(null));
     }, []);
 
     const beforeChangeCarousel = useCallback(

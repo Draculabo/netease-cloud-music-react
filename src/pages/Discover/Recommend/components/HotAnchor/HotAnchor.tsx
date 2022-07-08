@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { DiscoverSidebarLayout } from "../../layouts/SidebarLayout";
+import { DiscoverSidebarLayout } from "@/layouts/SidebarLayout";
 import { AnchorItem, AnchorWrapper } from "./style";
 import { anchorData } from "@/configs/localData";
 export const HotAnchor = memo(() => {
