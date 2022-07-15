@@ -1,4 +1,5 @@
-import { getPlayListDetail } from "@/services";
+import CommentList from "@/components/CommentList/CommentList";
+import { CommentType, getComment, getPlayListDetail } from "@/services";
 import { useRequest } from "ahooks";
 import { Skeleton } from "antd";
 import { memo, useEffect, useState } from "react";
@@ -18,9 +19,12 @@ const Ranking = memo(() => {
             },
             retryCount: 3,
             retryInterval: 3000,
+            cacheKey: "playlist-detail",
         },
     );
-
+    const { loading: commentLoading, data: commentData } = useRequest(() =>
+        getComment({ type: CommentType.PlayList, id: parseInt(id) }),
+    );
     useEffect(() => {
         rankingDetailRun();
     }, [id]);
@@ -29,18 +33,29 @@ const Ranking = memo(() => {
         <RankingWrapper className="wrap-v2">
             <RankingLeft />
             <RankingRightWrapper>
-                {rankingLoading ? (
-                    <Skeleton loading />
-                ) : (
-                    <>
-                        <RankingInformation info={playList} />
-                        <RankingTable
-                            playCount={playList?.playCount}
-                            trackCount={playList?.trackCount}
-                            list={playList?.tracks}
+                <>
+                    {rankingLoading ? (
+                        <Skeleton loading />
+                    ) : (
+                        <>
+                            <RankingInformation info={playList} />
+                            <RankingTable
+                                playCount={playList?.playCount}
+                                trackCount={playList?.trackCount}
+                                list={playList?.tracks}
+                            />
+                        </>
+                    )}
+                    {commentLoading ? (
+                        <Skeleton loading />
+                    ) : (
+                        <CommentList
+                            title="精彩评论"
+                            isHot={false}
+                            commentList={commentData?.comments}
                         />
-                    </>
-                )}
+                    )}
+                </>
             </RankingRightWrapper>
         </RankingWrapper>
     );

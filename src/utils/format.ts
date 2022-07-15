@@ -65,3 +65,11 @@ export const timestampParseDate = (timestamp: number, fmt: string) => {
 export const formatToMinuteSecond = timestamp => {
     return timestampParseDate(timestamp, "mm:ss");
 };
+/**
+ * 格式化时间戳为yyyy年MM月dd日格式的时间
+ * @param timestamp 时间戳
+ * @returns 时间字符串
+ */
+export const formatToYMS = timestamp => {
+    return timestampParseDate(timestamp, "yyyy年MM月dd日");
+};
