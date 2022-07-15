@@ -19,7 +19,7 @@ export const RankingList = memo<PropsWithChildren<RankingListProps>>(
         };
         return (
             <RankingListLayout title={title}>
-                {data.map(r => {
+                {data?.map(r => {
                     return (
                         <RankingListItem
                             key={r[props.idProperty]}

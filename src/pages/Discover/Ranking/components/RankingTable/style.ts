@@ -23,7 +23,7 @@ export const RankingTitleWrapper = styled.div`
 `;
 export const RankingCTable = styled.table`
     width: 100%;
-
+    border: 1px solid #d9d9d9;
     th {
         position: relative;
         background: url(${spriteTable}) repeat-x 0px -1px;

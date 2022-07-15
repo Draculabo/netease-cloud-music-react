@@ -48,7 +48,7 @@ export const RankingTable = memo<RankingTableProps>(({ trackCount, playCount, li
                     </tr>
                 </thead>
                 <tbody>
-                    {list.map((l, i) => {
+                    {list?.map((l, i) => {
                         return (
                             <RankingRow key={l.id} className={i % 2 === 0 ? "even" : ""}>
                                 <td>
