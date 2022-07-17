@@ -1,7 +1,7 @@
 import {
     getMusicUrlThunk,
     getMusicDetailThunk,
-    getlyricThunk,
+    getLyricThunk,
     playerAction,
 } from "@/stores/player";
 import { useDispatch } from "react-redux";
@@ -15,7 +15,7 @@ const usePlayMusic = () => {
     return (id: number) => {
         dispatch(getMusicUrlThunk(id));
         dispatch(getMusicDetailThunk(id));
-        dispatch(getlyricThunk(id));
+        dispatch(getLyricThunk(id));
         dispatch(playerAction.setSongId({ id }));
     };
 };

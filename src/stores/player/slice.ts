@@ -10,9 +10,10 @@ export const getMusicUrlThunk = createAsyncThunk(`player/getMusicUrl`, async (id
 });
 export const getMusicDetailThunk = createAsyncThunk(`player/getMusicDetail`, async (id: number) => {
     const data = await getMusicDetail({ id });
+
     return data;
 });
-export const getlyricThunk = createAsyncThunk(`player/getlyric`, async (id: number) => {
+export const getLyricThunk = createAsyncThunk(`player/getLyric`, async (id: number) => {
     const data = await getlyric({ id });
     return data;
 });
@@ -112,7 +113,7 @@ const playerSlice = createSlice({
                 state.currentSong.imageUrl = payload?.songs[0]?.al?.picUrl;
             }
         },
-        [getlyricThunk.fulfilled.type](state, { payload }) {
+        [getLyricThunk.fulfilled.type](state, { payload }) {
             if (state.currentSong !== null) {
                 state.currentSong.lyrics = parseLyric(payload?.lrc?.lyric);
             }
