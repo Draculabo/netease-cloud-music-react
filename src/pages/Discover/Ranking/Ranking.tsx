@@ -1,7 +1,7 @@
 import CommentList from "@/components/CommentList/CommentList";
 import { CommentType, getComment, getPlayListDetail } from "@/services";
 import { useRequest } from "ahooks";
-import { Skeleton } from "antd";
+import { Skeleton } from "@/components";
 import { memo, useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { RankingInformation, RankingTable } from "./components";

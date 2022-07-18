@@ -43,7 +43,11 @@ export function getTopList() {
         url: "/toplist",
         method: "get",
         params: {},
-    });
+    })
+        .then((res: any) => res?.list)
+        .catch(err => {
+            throw new Error(err);
+        });
 }
 /**
  * 获取歌单详情
