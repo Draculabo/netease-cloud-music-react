@@ -1,6 +1,5 @@
 import { formatToYMS } from "@/utils";
 import { linkToUserHomePage } from "@/utils/link";
-import { take } from "lodash";
 import { memo } from "react";
 import { Link } from "react-router-dom";
 import { CommentListWrapper } from "./CommentList.style";
@@ -25,11 +24,9 @@ type CommentListPropsType = {
     isHot: boolean;
     commentList: CommentType[] | undefined;
 };
-
 const CommentList = memo((props: CommentListPropsType) => {
-    const comments: CommentType[] = props.isHot
-        ? take(props?.commentList, 15)
-        : props?.commentList || [];
+    const comments: CommentType[] =
+        (props.isHot ? props?.commentList?.slice(0, 15) : props?.commentList) ?? [];
 
     return (
         <CommentListWrapper>
