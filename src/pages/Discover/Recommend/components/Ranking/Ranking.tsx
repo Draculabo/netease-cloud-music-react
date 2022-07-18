@@ -1,7 +1,7 @@
 import { DiscoverModuleLayout } from "@/layouts";
 import { getTopList } from "@/services";
 import { useRequest } from "ahooks";
-import { Skeleton } from "antd";
+import { Skeleton } from "@/components";
 import { memo, useState } from "react";
 import { DiscoverRankingList } from "./DiscoverRankingList";
 import { RankingWrapper } from "./style";

@@ -2,7 +2,7 @@ import { getPlayListDetail } from "@/services";
 import { usePlayMusic } from "@/utils/hooks";
 import useAddPlayList from "@/utils/hooks/useAddPlayList";
 import { useRequest } from "ahooks";
-import { Skeleton } from "antd";
+import { Skeleton } from "@/components";
 import { memo, useState } from "react";
 import { Link } from "react-router-dom";
 import { RankingListBottom, RankingListTop, RankingListWrapper } from "./style";
