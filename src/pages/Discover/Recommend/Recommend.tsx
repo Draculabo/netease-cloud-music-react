@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
     HotRecommend,
     RecommendCarousel,
@@ -8,7 +9,7 @@ import {
 } from "./components";
 import { DiscovertLeft, DiscovertRight, DiscovertWrapper, UserInfo } from "./style";
 
-const Recommend: React.FC = () => {
+const Recommend: FC = () => {
     return (
         <>
             {/* 轮播图 */}

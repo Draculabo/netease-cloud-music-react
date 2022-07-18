@@ -1,20 +1,16 @@
-import { memo, useCallback, useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "@/utils/hooks";
-import { getBanners } from "@/stores";
-import { Carousel } from "antd";
-import { BannerRight, CarouselWrapper, CBannerContainer, CBannerWrapper, CImg } from "./style";
-import { CarouselRef } from "antd/lib/carousel";
 import { CArrow } from "@/components";
-export const RecommendCarousel: React.MemoExoticComponent<() => JSX.Element> = memo(() => {
-    const banners = useSelector(state => state.recommend.banners);
+import { BannerContentLoader } from "@/components/basic/CustomizeContentLoader";
+import { getBanners } from "@/services";
+import { useRequest } from "ahooks";
+import { Carousel } from "antd";
+import { CarouselRef } from "antd/lib/carousel";
+import { memo, useCallback, useRef, useState } from "react";
+import { BannerRight, CarouselWrapper, CBannerContainer, CBannerWrapper, CImg } from "./style";
+export const RecommendCarousel = memo(() => {
+    const { data: banners, loading } = useRequest<any[] | void, any>(() => getBanners());
     const [index, setIndex] = useState(0);
 
     const carouselRef = useRef<CarouselRef>(null);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getBanners(null));
-    }, []);
 
     const beforeChangeCarousel = useCallback(
         (from, to) => {
@@ -28,32 +24,37 @@ export const RecommendCarousel: React.MemoExoticComponent<() => JSX.Element> = m
     const changeNext = useCallback(() => {
         carouselRef?.current?.next();
     }, [carouselRef]);
-    const bgImageUrl = banners[index] && banners[index].imageUrl + "?imageView&blur=40x20";
+
+    const bgImageUrl =
+        banners && banners[index] ? banners[index].imageUrl + "?imageView&blur=40x20" : "";
 
     return (
         <CBannerContainer bgImage={bgImageUrl}>
             <CBannerWrapper className="wrap-v2">
                 <CarouselWrapper>
-                    <Carousel
-                        ref={carouselRef}
-                        autoplay
-                        beforeChange={beforeChangeCarousel}
-                        effect="fade"
-                    >
-                        {banners.map((b: any, i) => {
-                            return (
-                                <div key={i}>
-                                    <a href={b.url}>
-                                        <CImg src={b.imageUrl}></CImg>
-                                    </a>
-                                </div>
-                            );
-                        })}
-                    </Carousel>
+                    {loading ? (
+                        <BannerContentLoader />
+                    ) : (
+                        <Carousel
+                            ref={carouselRef}
+                            autoplay
+                            beforeChange={beforeChangeCarousel}
+                            effect="fade"
+                        >
+                            {banners?.map((b: any, i) => {
+                                return (
+                                    <div key={i}>
+                                        <a href={b.url}>
+                                            <CImg src={b.imageUrl} />
+                                        </a>
+                                    </div>
+                                );
+                            })}
+                        </Carousel>
+                    )}
                 </CarouselWrapper>
-
                 <BannerRight>
-                    <a href=""></a>
+                    <a href="" />
                     <p>PC 安卓 iPhone WP iPad Mac 六大客户端</p>
                 </BannerRight>
                 <CArrow onClick={changePrev} className="carousel-arrow left-arrow" />

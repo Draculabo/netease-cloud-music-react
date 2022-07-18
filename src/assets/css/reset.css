@@ -76,7 +76,6 @@ img {
     vertical-align: middle;
 }
 
-
 /* 全局样式 */
 
 body,
@@ -175,4 +174,10 @@ button {
 
 .btn {
     cursor: pointer;
+}
+
+.default-msg .ant-message-notice-content {
+    background-color: #313131;
+    width: fit-content;
+    color: #fff;
 }

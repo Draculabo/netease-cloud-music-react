@@ -1,4 +1,5 @@
 import { request } from "@/utils";
+import { defaultMsg, errorMsg } from "@/utils/message";
 /**
  * * 获取推荐歌单
  * @param limit 请求条数
@@ -71,4 +72,16 @@ export function getArtistList(offset = 0, limit = 5) {
             limit,
         },
     });
+}
+
+/**
+ * 获取首页轮播图
+ */
+export function getBanners() {
+    return request({
+        url: "/banner",
+        method: "get",
+    })
+        .then((res: any) => res.banners)
+        .catch(() => defaultMsg(errorMsg.networkError));
 }
