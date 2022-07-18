@@ -75,7 +75,11 @@ export function getArtistList(offset = 0, limit = 5) {
             offset,
             limit,
         },
-    });
+    })
+        .then((res: any) => res.artists)
+        .catch(err => {
+            throw new Error(err);
+        });
 }
 
 /**
