@@ -1,5 +1,5 @@
 import { CArrow } from "@/components";
-import { BannerContentLoader } from "@/components/basic/CustomizeContentLoader";
+import { BannerContentLoader } from "@/components/CustomizeContentLoader";
 import { getBanners } from "@/services";
 import { useRequest } from "ahooks";
 import { Carousel } from "antd";

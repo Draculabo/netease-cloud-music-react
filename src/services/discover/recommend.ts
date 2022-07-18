@@ -12,7 +12,11 @@ export function getRecommendList(limit?: number) {
         params: {
             limit,
         },
-    });
+    })
+        .then((res: any) => res.result)
+        .catch(err => {
+            throw new Error(err);
+        });
 }
 /**
  * 获取新歌列表

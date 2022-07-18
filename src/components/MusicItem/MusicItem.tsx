@@ -12,14 +12,14 @@ export const MusicItem = memo<Props>(props => {
             <AlbumCover>
                 <HRTop>
                     <img src={rc.picUrl} alt="" />
-                    <a href={rc.picUrl}></a>
+                    <a href={rc.picUrl} />
                 </HRTop>
                 <HMBottom>
                     <div className="left">
-                        <span className="icon-headset"></span>
+                        <span className="icon-headset" />
                         <span className="views">{formatCount(rc.playCount)} </span>
                     </div>
-                    <a href="" className="play-icon"></a>
+                    <a href="" className="play-icon" />
                 </HMBottom>
             </AlbumCover>
             {/* 热门推荐项目描述 */}
