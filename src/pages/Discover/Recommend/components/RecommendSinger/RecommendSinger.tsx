@@ -4,6 +4,8 @@ import { getArtistList } from "@/services";
 import { useRequest } from "ahooks";
 import { memo } from "react";
 import { ApplicationButton, RecommendSingerWrapper, SingerItem } from "./style";
+import { handleImageSize } from "@/utils/image";
+
 export const RecommendSinger = memo(() => {
     const { data: artists, loading } = useRequest<any[], any>(() => getArtistList());
     return (
@@ -15,7 +17,15 @@ export const RecommendSinger = memo(() => {
                     {artists?.map(a => {
                         return (
                             <SingerItem key={a.id}>
-                                <img src={a.img1v1Url} alt="" className="avatar" />
+                                <img
+                                    src={handleImageSize({
+                                        url: a.img1v1Url,
+                                        width: 62,
+                                        height: 62,
+                                    })}
+                                    alt=""
+                                    className="avatar"
+                                />
                                 <div className="info">
                                     <h4>{a.name}</h4>
                                     <p className="alias text-nowrap">

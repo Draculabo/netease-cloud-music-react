@@ -1,9 +1,12 @@
 import { formatCount } from "@/utils";
 import { memo } from "react";
 import { AlbumCover, AlbumDesc, HMBottom, HRTop, HRWrapper } from "./style";
+import { handleImageSize } from "@/utils/image";
+
 interface Props {
     rc: any;
 }
+
 export const MusicItem = memo<Props>(props => {
     const { rc } = props;
     return (
@@ -11,7 +14,10 @@ export const MusicItem = memo<Props>(props => {
             {/* 热门推荐项目头部 */}
             <AlbumCover>
                 <HRTop>
-                    <img src={rc.picUrl} alt="" />
+                    <img
+                        src={handleImageSize({ url: rc.picUrl, width: 140, height: 140 })}
+                        alt=""
+                    />
                     <a href={rc.picUrl} />
                 </HRTop>
                 <HMBottom>
