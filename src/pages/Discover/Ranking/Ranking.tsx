@@ -46,15 +46,12 @@ const Ranking = memo(() => {
                             />
                         </>
                     )}
-                    {commentLoading ? (
-                        <Skeleton loading />
-                    ) : (
-                        <CommentList
-                            title="精彩评论"
-                            isHot={false}
-                            commentList={commentData?.comments}
-                        />
-                    )}
+                    (
+                    <CommentList
+                        title="精彩评论"
+                        isHot={false}
+                        commentList={commentData?.comments}
+                    />
                 </>
             </RankingRightWrapper>
         </RankingWrapper>
