@@ -2,8 +2,9 @@ import { formatToYMS } from "@/utils";
 import { linkToUserHomePage } from "@/utils/link";
 import { memo } from "react";
 import { Link } from "react-router-dom";
-import { CommentListWrapper } from "./CommentList.style";
+import { AvatarWrapper, CommentListWrapper } from "./CommentList.style";
 import CommentListSkeleton from "./CommentListSkeleton";
+import { handleImageSize } from "@/utils/image";
 export interface CreatorType {
     userId: number;
     nickname: string;
@@ -40,15 +41,19 @@ const CommentList = memo((props: CommentListPropsType) => {
                     comments?.map(comment => {
                         return (
                             <div className="comment-item" key={comment.commentId}>
-                                <div
-                                    className="avatarUrl"
-                                    style={{ backgroundImage: `url(${comment.user.avatarUrl})` }}
+                                <Link
+                                    className="block-a"
+                                    to={linkToUserHomePage(comment.user.userId)}
                                 >
-                                    <Link
-                                        className="block-a"
-                                        to={linkToUserHomePage(comment.user.userId)}
+                                    <AvatarWrapper
+                                        src={handleImageSize({
+                                            url: comment.user?.avatarUrl ?? "",
+                                            width: 50,
+                                            height: 50,
+                                        })}
                                     />
-                                </div>
+                                </Link>
+
                                 <div className="content-field">
                                     <div className="name-content">
                                         <Link to={linkToUserHomePage(comment.user.userId)}>
