@@ -1,6 +1,5 @@
 import { SongOfPlaylistType } from "@/stores/player";
 import { timestampParseDate } from "@/utils";
-import { usePlayMusic } from "@/utils/hooks";
 import useAddPlayList from "@/utils/hooks/useAddPlayList";
 import { handleImageSize } from "@/utils/image";
 import { Fragment, memo, useCallback } from "react";
@@ -13,17 +12,15 @@ import {
     RankingTitleWrapper,
     TDCenter,
 } from "./style";
+
 interface RankingTableProps {
     trackCount: number;
     playCount: number;
     list: any[];
 }
+
 export const RankingTable = memo<RankingTableProps>(({ trackCount, playCount, list }) => {
-    const playMusic = usePlayMusic();
-    const addPlayList = useAddPlayList();
-    const playMusicEvent = useCallback(id => {
-        playMusic(id);
-    }, []);
+    const { addPlayList, replacePlayList } = useAddPlayList();
     const addPlayListEvent = useCallback((item: SongOfPlaylistType) => {
         addPlayList(item);
     }, []);
@@ -32,16 +29,16 @@ export const RankingTable = memo<RankingTableProps>(({ trackCount, playCount, li
             <RankingTitleWrapper>
                 <div className="title-left">
                     <h2>歌曲列表</h2>
-                    <span className="song-count">{trackCount}首歌</span>
+                    <span className="song-count">{trackCount || 0}首歌</span>
                 </div>
                 <div className="title right">
-                    播放：<span className="play-count ">{playCount}</span>次
+                    播放：<span className="play-count ">{playCount || 0}</span>次
                 </div>
             </RankingTitleWrapper>
             <RankingCTable>
                 <thead>
                     <tr>
-                        <th className="index-head"></th>
+                        <th className="index-head" />
                         <th>标题</th>
                         <th>时长</th>
                         <th>歌手</th>
@@ -54,7 +51,7 @@ export const RankingTable = memo<RankingTableProps>(({ trackCount, playCount, li
                                 <td>
                                     <div className="td-container td-index ">
                                         <span className="index">{i + 1}</span>
-                                        <span className="new"></span>
+                                        <span className="new" />
                                     </div>
                                 </td>
                                 <td>
@@ -63,7 +60,7 @@ export const RankingTable = memo<RankingTableProps>(({ trackCount, playCount, li
                                             <a href="#" className="img-link">
                                                 <img
                                                     src={handleImageSize({
-                                                        url: l.al.picUrl,
+                                                        url: l.al?.picUrl,
                                                         width: 40,
                                                         height: 40,
                                                     })}
@@ -75,14 +72,19 @@ export const RankingTable = memo<RankingTableProps>(({ trackCount, playCount, li
                                         )}
                                         <span
                                             onClick={() => {
-                                                playMusicEvent(l.id);
+                                                replacePlayList({
+                                                    id: l.id,
+                                                    name: l.name,
+                                                    author: l.ar,
+                                                    duration: l.dt,
+                                                });
                                             }}
                                             className="playing btn"
-                                        ></span>
+                                        />
                                         <div className="ttc">
                                             <span className="txt text-nowrap">
                                                 <a href="#">
-                                                    <span title={l.al.name}>{l.al.name}</span>
+                                                    <span title={l.al?.name}>{l.al?.name}</span>
                                                 </a>
                                                 <span title={l.alia[0]} className="s-fc8">
                                                     {l.alia[0]}
@@ -110,26 +112,26 @@ export const RankingTable = memo<RankingTableProps>(({ trackCount, playCount, li
                                                 onClick={() => {
                                                     addPlayListEvent({
                                                         id: l.id,
-                                                        name: l.al.name,
+                                                        name: l.name,
                                                         author: l.ar,
                                                         duration: l.dt,
                                                     });
                                                 }}
-                                            ></span>
-                                            <span className="collect btn"></span>
-                                            <span className="share btn"></span>
-                                            <span className="download btn"></span>
+                                            />
+                                            <span className="collect btn" />
+                                            <span className="share btn" />
+                                            <span className="download btn" />
                                         </Operate>
                                     </div>
                                 </td>
                                 <td>
                                     <div
                                         className="author text-nowrap"
-                                        title={l.ar.map(a => a.name).join("/")}
+                                        title={l.ar?.map(a => a.name).join("/")}
                                     >
-                                        {l.ar.map((a, i, arr) => {
+                                        {l.ar?.map((a, i, arr) => {
                                             return (
-                                                <Fragment key={a.id}>
+                                                <Fragment key={`${a.id}-i`}>
                                                     <a className="" href="#">
                                                         {a.name}
                                                     </a>

@@ -6,10 +6,12 @@ import { Skeleton } from "@/components";
 import { memo, useState } from "react";
 import { Link } from "react-router-dom";
 import { RankingListBottom, RankingListTop, RankingListWrapper } from "./style";
+
 interface RankingListProps {
     title: string;
     id: string;
 }
+
 export const DiscoverRankingList = memo<RankingListProps>(({ id }) => {
     const [playList, setPlayList] = useState<any[]>([]);
     const { data, loading } = useRequest<any, any>(() => getPlayListDetail(id), {
@@ -18,7 +20,7 @@ export const DiscoverRankingList = memo<RankingListProps>(({ id }) => {
         },
     });
     const playMusic = usePlayMusic();
-    const addPlayList = useAddPlayList();
+    const { addPlayList, replacePlayList } = useAddPlayList();
     if (loading) {
         return <Skeleton loading />;
     }
@@ -39,10 +41,10 @@ export const DiscoverRankingList = memo<RankingListProps>(({ id }) => {
                         <span
                             className="ranking-play"
                             onClick={() => {
-                                addPlayList(data?.playlist.id);
+                                replacePlayList(data?.playlist.id);
                             }}
-                        ></span>
-                        <span className="ranking-collect"></span>
+                        />
+                        <span className="ranking-collect" />
                     </div>
                 </div>
             </RankingListTop>
@@ -67,21 +69,26 @@ export const DiscoverRankingList = memo<RankingListProps>(({ id }) => {
                             <span
                                 className="playing"
                                 onClick={() => {
-                                    playMusic(m.id);
+                                    replacePlayList({
+                                        id: m.id,
+                                        name: m.name,
+                                        author: m.ar,
+                                        duration: m.dt,
+                                    });
                                 }}
-                            ></span>
+                            />
                             <span
                                 className="add-playlist"
                                 onClick={() => {
                                     addPlayList({
                                         id: m.id,
                                         name: m.name,
-                                        author: m.ar?.map(a => a.name)?.join("/"),
+                                        author: m.ar,
                                         duration: m.dt,
                                     });
                                 }}
-                            ></span>
-                            <span className="collect"></span>
+                            />
+                            <span className="collect" />
                         </div>
                     </div>
                 ))}
