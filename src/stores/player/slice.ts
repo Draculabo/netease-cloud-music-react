@@ -1,5 +1,5 @@
 import { getPlayListDetail } from "@/services";
-import { getlyric, getMusicDetail, getMusicUrl } from "@/services/player";
+import { getLyric, getMusicDetail, getMusicUrl } from "@/services/player";
 import { parseLyric } from "@/utils/lyric-parse";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PlayerState, SongOfPlaylistType } from "./types";
@@ -14,7 +14,7 @@ export const getMusicDetailThunk = createAsyncThunk(`player/getMusicDetail`, asy
     return getMusicDetail({ id });
 });
 export const getLyricThunk = createAsyncThunk(`player/getLyric`, async (id: number) => {
-    return getlyric({ id });
+    return getLyric({ id });
 });
 export const getPlayListThunk = createAsyncThunk(`player/getPlayList`, async (id: number) => {
     return getPlayListDetail(id.toString());
