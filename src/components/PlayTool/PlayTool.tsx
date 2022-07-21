@@ -1,5 +1,5 @@
 import { playerAction } from "@/stores/player";
-import { useDispatch, useSelector, useTogglePLDisplay, useToggleMusic } from "@/utils/hooks";
+import { useDispatch, useSelector, useToggleMusic, useTogglePLDisplay } from "@/utils/hooks";
 import { formatToMinuteSecond } from "@/utils";
 import { Slider } from "antd";
 import { memo, useCallback, useEffect, useRef, useState } from "react";
@@ -14,6 +14,7 @@ import {
     SongOperate,
 } from "./style";
 import VolumeSlider from "../basic/VolumeSlider/VolumeSlider";
+
 export const PlayTool = memo(() => {
     const player = useSelector(state => state.player, shallowEqual);
     const dispatch = useDispatch();
@@ -95,7 +96,7 @@ export const PlayTool = memo(() => {
             // 提前500ms滑动歌词
             return time >= seconds - 500 && time < duration - 500;
         });
-        dispatch(playerAction.setLyricInex(index));
+        dispatch(playerAction.setLyricIndex(index));
     }, [audioRef, player.currentSong?.lyrics, player.currentSong?.currentTime]);
     /**
      * 音频播放事件
@@ -151,18 +152,18 @@ export const PlayTool = memo(() => {
                         href="#"
                         className="prev"
                         onClick={() => toggleMusic(player.currentSongIndex - 1)}
-                    ></a>
+                    />
                     <a
                         href="#"
                         className={player.playing ? "play-btn pause" : "play-btn play"}
                         onClick={changePlayAction}
-                    ></a>
+                    />
 
                     <a
                         href="#"
                         className="next"
                         onClick={() => toggleMusic(player.currentSongIndex + 1)}
-                    ></a>
+                    />
                 </PlayOperate>
                 <MusicImage url={player.currentSong?.imageUrl} />
                 <div className="play-center">
@@ -193,9 +194,9 @@ export const PlayTool = memo(() => {
                 </div>
                 <div className="bar-operate">
                     <SongOperate>
-                        <a href="#" className="pip"></a>
-                        <a href="#" className="collect"></a>
-                        <a href="#" className="share"></a>
+                        <a href="#" className="pip" />
+                        <a href="#" className="collect" />
+                        <a href="#" className="share" />
                     </SongOperate>
                     <AudioOperate>
                         <VolumeSlider
@@ -214,8 +215,8 @@ export const PlayTool = memo(() => {
                                 e.preventDefault();
                                 dispatch(playerAction.toggleVolumeDisplay());
                             }}
-                        ></a>
-                        <a href="#" className="play-mode repeat"></a>
+                        />
+                        <a href="#" className="play-mode repeat" />
                         <a href="#" className="play-list" onClick={togglePl}>
                             {player.playList?.length}
                         </a>

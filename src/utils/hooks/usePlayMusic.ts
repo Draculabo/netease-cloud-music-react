@@ -1,7 +1,7 @@
 import {
-    getMusicUrlThunk,
-    getMusicDetailThunk,
     getLyricThunk,
+    getMusicDetailThunk,
+    getMusicUrlThunk,
     playerAction,
 } from "@/stores/player";
 import { useDispatch } from "react-redux";
