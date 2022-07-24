@@ -1,9 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 @import "~normalize.css";
+@import "tailwindcss/tailwind.css";
 @import "~antd/dist/antd.css";
-
 /* 样式的重置 */
 
 body,
@@ -41,6 +38,7 @@ li {
 a {
     text-decoration: none;
     color: #666;
+    line-height: 1.6;
 }
 
 i,
@@ -55,10 +53,6 @@ select,
 a {
     outline: none;
     border: none;
-}
-
-a {
-    line-height: 1.6;
 }
 
 a:hover {
@@ -125,7 +119,7 @@ button {
     background: url(../img/sprite_02.png) no-repeat 0 9999px;
 }
 
-.sprite_covor {
+.sprite_cover {
     background: url(../img/sprite_cover.png) no-repeat 0 9999px;
 }
 
