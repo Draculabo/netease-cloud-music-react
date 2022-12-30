@@ -11,7 +11,7 @@ export const enum AddPlayListEnum {
     ReplacePlayList,
 }
 
-type AddPlaylistType = SongOfPlaylistType | number;
+type AddPlaylistType = SongOfPlaylistType | number | undefined;
 /**
  * 添加到播放列表
  * @returns A function that takes a parameter of type SongOfPlayListType | number and returns void.
@@ -30,6 +30,9 @@ const useAddPlayList = () => {
     }, [playList, playlistStatus, playMusic]);
     return {
         addPlayList(param: AddPlaylistType) {
+            if (param === undefined) {
+                return;
+            }
             dispatch(playerAction.setPlaylistStatus(AddPlayListEnum.AppendPlayList));
             // 歌单
             if (typeof param === "number") {
@@ -43,6 +46,9 @@ const useAddPlayList = () => {
             }
         },
         replacePlayList(param: AddPlaylistType) {
+            if (param === undefined) {
+                return;
+            }
             dispatch(playerAction.setPlaylistStatus(AddPlayListEnum.ReplacePlayList));
             // 歌单
             if (typeof param === "number") {

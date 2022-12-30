@@ -1,9 +1,13 @@
+import { isNil } from "ramda";
 /**
  * 格式化数字
  * @param count 数字
  * @returns 格式化后的字符串
  */
-export const formatCount = (count: number) => {
+export const formatCount = (count?: number) => {
+    if (isNil(count)) {
+        return "0";
+    }
     if (count <= 0) {
         return "0";
     }
@@ -12,7 +16,7 @@ export const formatCount = (count: number) => {
     } else if (count > 10000) {
         return Math.round(count / 10000) + "万";
     } else {
-        return count;
+        return count.toString();
     }
 };
 

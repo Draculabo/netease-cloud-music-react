@@ -1,5 +1,5 @@
 import { request } from "@/utils";
-import { CommentType } from "./type";
+import { ICommentListSearchParams } from "@/typings";
 
 /**
  * 获取评论
@@ -8,13 +8,12 @@ import { CommentType } from "./type";
  * type: 数字 , 资源类型 , 对应歌曲 , mv, 专辑 , 歌单 , 电台, 视频对应以下类型
  * @returns 评论
  */
-export function getComment({ id, type }: { id: number; type: CommentType }) {
+export function getComment(requestParams: ICommentListSearchParams) {
     return request({
         url: "/comment/new",
         method: "get",
         params: {
-            id,
-            type,
+            ...requestParams,
         },
     })
         .then(res => res.data)

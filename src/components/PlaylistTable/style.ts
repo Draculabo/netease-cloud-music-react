@@ -1,35 +1,42 @@
 import styled from "styled-components";
 import spriteTable from "@/assets/img/sprite_table.png";
 import spriteIcon2 from "@/assets/img/sprite_icon2.png";
-export const RankingTableWrapper = styled.div``;
-export const RankingTitleWrapper = styled.div`
+
+export const PlaylistTableWrapper = styled.div``;
+export const PlaylistTitleWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #c20c0c;
+
     h2 {
         font-size: 20px;
     }
+
     .title-left {
         display: flex;
         align-items: center;
     }
+
     .song-count {
         padding-left: 10px;
     }
+
     .play-count {
         font-weight: 700;
     }
 `;
-export const RankingCTable = styled.table`
+export const PlaylistCTable = styled.table`
     width: 100%;
     border: 1px solid #d9d9d9;
+
     th {
         position: relative;
         background: url(${spriteTable}) repeat-x 0px -1px;
         text-align: left;
         padding-left: 10px;
         font-weight: 400;
+
         &:not(:last-child)::after {
             content: "";
             position: absolute;
@@ -40,9 +47,11 @@ export const RankingCTable = styled.table`
             width: 2px;
             height: 35px;
         }
+
         &:nth-child(3) {
             width: 91px;
         }
+
         &:nth-child(4) {
             width: 26%;
         }
@@ -52,17 +61,19 @@ export const RankingCTable = styled.table`
         width: 77px;
         height: 34px;
     }
+
     .even {
         background-color: #f7f7f7;
     }
 `;
-export const RankingRow = styled.tr`
+export const PlaylistRow = styled.tr`
     padding: 5px 0;
 
     .index,
     .new {
         margin: 0 5px;
     }
+
     .new {
         width: 16px;
         height: 5px;
@@ -74,6 +85,7 @@ export const RankingRow = styled.tr`
         height: 17px;
         background: url(${spriteIcon2}) no-repeat -45px -635px;
     }
+
     .td-container {
         display: flex;
         align-items: center;
@@ -86,10 +98,12 @@ export const RankingRow = styled.tr`
 
     td {
         padding: 6px 10px;
+
         &:hover {
             .operate {
                 display: flex;
             }
+
             .song-duration {
                 display: none;
             }
@@ -105,24 +119,29 @@ export const Operate = styled.div`
     align-items: center;
     justify-content: space-around;
     margin: 0 3px;
+
     .btn {
         margin: 0 3px;
     }
+
     .add-playing {
         width: 14px;
         height: 14px;
         background: url(${spriteIcon2}) no-repeat 0 -700px;
     }
+
     .collect {
         width: 16px;
         height: 14px;
         background: url(${spriteTable}) no-repeat -1px -174px;
     }
+
     .share {
         width: 14px;
         height: 14px;
         background: url(${spriteTable}) no-repeat -2px -195px;
     }
+
     .download {
         width: 14px;
         height: 14px;
@@ -133,27 +152,33 @@ export const TDCenter = styled.div`
     span {
         margin-left: 10px;
     }
+
     .alias {
         color: #aeaeae;
     }
+
     .img-link {
         display: block;
     }
+
     img {
         width: 50px;
         height: 50px;
     }
+
     .mv {
         width: 23px;
         height: 17px;
         margin: 1px 0 0 0;
         background-position: 0 -151px;
     }
+
     .ttc {
         text-align: left;
         height: 18px;
         margin-right: 20px;
     }
+
     .txt {
         display: inline-block;
         border-spacing: 0;

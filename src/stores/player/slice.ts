@@ -4,7 +4,7 @@ import { parseLyric } from "@/utils/lyric-parse";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { PlayerState, SongOfPlaylistType } from "./types";
 import { AddPlayListEnum } from "@/utils/hooks/useAddPlayList";
-import * as _ from "ramda";
+import { equals, uniqWith } from "ramda";
 
 export const getMusicUrlThunk = createAsyncThunk(`player/getMusicUrl`, async (id: number) => {
     const { data } = await getMusicUrl({ id });
@@ -82,8 +82,8 @@ const playerSlice = createSlice({
         addPlayList(state, { payload }: PayloadAction<SongOfPlaylistType | SongOfPlaylistType[]>) {
             // 歌曲数组
             if (Array.isArray(payload)) {
-                state.playList = _.uniqWith((a, b) => {
-                    return _.equals(a, b);
+                state.playList = uniqWith<SongOfPlaylistType, unknown>((a, b) => {
+                    return equals(a, b);
                 })([...state.playList, ...payload]);
             }
             // 歌曲

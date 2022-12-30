@@ -1,23 +1,25 @@
 import { lazy, memo, ReactNode, Suspense } from "react";
 import { Navigate, RouteObject, useRoutes } from "react-router";
 import { BasicLayout } from "./layouts";
-import { DisCoverLayout } from "./layouts/DiscoverLayout";
+import { DiscoverLayout } from "@/layouts";
 import { Friend, Mine, NewSongs, PlayList, Radio, Recommend, Singer } from "./pages";
-const Ranking = lazy(() => import("./pages/Discover/Ranking/Ranking"));
+
+const Ranking = lazy(() => import("@/pages/Discover/Ranking/Ranking"));
+const PlaylistDetail = lazy(() => import("@/pages/PlaylistDetail"));
+const NotFound = lazy(() => import("@/pages/Error/NotFound"));
 const lazyLoad = (child: ReactNode): ReactNode => {
-    return <Suspense fallback={<>loading...</>}>{child}</Suspense>;
+    return <Suspense fallback={<>loading</>}>{child}</Suspense>;
 };
 export const RenderRoute = memo(() => {
     const routes: RouteObject[] = [
         {
             path: "/",
-
             element: <Navigate to={"/discover"} replace />,
         },
         {
             path: "/discover",
 
-            element: <DisCoverLayout />,
+            element: <DiscoverLayout />,
             children: [
                 {
                     path: "",
@@ -53,6 +55,10 @@ export const RenderRoute = memo(() => {
                     path: "newsongs/*",
                     element: <NewSongs />,
                 },
+                {
+                    path: "playlist-detail/:id",
+                    element: lazyLoad(<PlaylistDetail />),
+                },
             ],
         },
         {
@@ -70,6 +76,10 @@ export const RenderRoute = memo(() => {
                     <Friend />
                 </BasicLayout>
             ),
+        },
+        {
+            path: "*",
+            element: lazyLoad(<NotFound />),
         },
     ];
     return useRoutes(routes);

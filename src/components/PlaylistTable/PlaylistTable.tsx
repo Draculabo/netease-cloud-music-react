@@ -1,32 +1,29 @@
-import { SongOfPlaylistType } from "@/stores/player";
 import { timestampParseDate } from "@/utils";
 import useAddPlayList from "@/utils/hooks/useAddPlayList";
 import { handleImageSize } from "@/utils/image";
-import { Fragment, memo, useCallback } from "react";
+import { Fragment, memo } from "react";
 
 import {
     Operate,
-    RankingCTable,
-    RankingRow,
-    RankingTableWrapper,
-    RankingTitleWrapper,
+    PlaylistCTable,
+    PlaylistRow,
+    PlaylistTableWrapper,
+    PlaylistTitleWrapper,
     TDCenter,
 } from "./style";
 
-interface RankingTableProps {
+interface PlaylistTableProps {
     trackCount: number;
     playCount: number;
     list: any[];
 }
 
-export const RankingTable = memo<RankingTableProps>(({ trackCount, playCount, list }) => {
+export const PlaylistTable = memo<PlaylistTableProps>(({ trackCount, playCount, list }) => {
     const { addPlayList, replacePlayList } = useAddPlayList();
-    const addPlayListEvent = useCallback((item: SongOfPlaylistType) => {
-        addPlayList(item);
-    }, []);
+
     return (
-        <RankingTableWrapper>
-            <RankingTitleWrapper>
+        <PlaylistTableWrapper>
+            <PlaylistTitleWrapper>
                 <div className="title-left">
                     <h2>歌曲列表</h2>
                     <span className="song-count">{trackCount || 0}首歌</span>
@@ -34,8 +31,8 @@ export const RankingTable = memo<RankingTableProps>(({ trackCount, playCount, li
                 <div className="title right">
                     播放：<span className="play-count ">{playCount || 0}</span>次
                 </div>
-            </RankingTitleWrapper>
-            <RankingCTable>
+            </PlaylistTitleWrapper>
+            <PlaylistCTable>
                 <thead>
                     <tr>
                         <th className="index-head" />
@@ -47,7 +44,7 @@ export const RankingTable = memo<RankingTableProps>(({ trackCount, playCount, li
                 <tbody>
                     {list?.map((l, i) => {
                         return (
-                            <RankingRow key={l.id} className={i % 2 === 0 ? "even" : ""}>
+                            <PlaylistRow key={l.id} className={i % 2 === 0 ? "even" : ""}>
                                 <td>
                                     <div className="td-container td-index ">
                                         <span className="index">{i + 1}</span>
@@ -110,7 +107,7 @@ export const RankingTable = memo<RankingTableProps>(({ trackCount, playCount, li
                                             <span
                                                 className="add-playing btn"
                                                 onClick={() => {
-                                                    addPlayListEvent({
+                                                    addPlayList({
                                                         id: l.id,
                                                         name: l.name,
                                                         author: l.ar,
@@ -141,11 +138,11 @@ export const RankingTable = memo<RankingTableProps>(({ trackCount, playCount, li
                                         })}
                                     </div>
                                 </td>
-                            </RankingRow>
+                            </PlaylistRow>
                         );
                     })}
                 </tbody>
-            </RankingCTable>
-        </RankingTableWrapper>
+            </PlaylistCTable>
+        </PlaylistTableWrapper>
     );
 });

@@ -2,6 +2,7 @@ import { formatCount } from "@/utils";
 import { memo } from "react";
 import { AlbumCover, AlbumDesc, HMBottom, HRTop, HRWrapper } from "./style";
 import { handleImageSize } from "@/utils/image";
+import { Link } from "react-router-dom";
 
 interface Props {
     rc: any;
@@ -18,7 +19,7 @@ export const MusicItem = memo<Props>(props => {
                         src={handleImageSize({ url: rc.picUrl, width: 140, height: 140 })}
                         alt=""
                     />
-                    <a href={rc.picUrl} />
+                    <Link to={`/discover/playlist-detail/${rc.id}`} />
                 </HRTop>
                 <HMBottom>
                     <div className="left">

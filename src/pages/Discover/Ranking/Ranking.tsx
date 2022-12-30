@@ -1,12 +1,13 @@
 import CommentList from "@/components/CommentList/CommentList";
-import { CommentType, getComment, getPlayListDetail } from "@/services";
+import { getComment, getPlayListDetail } from "@/services";
 import { useRequest } from "ahooks";
 import { Skeleton } from "antd";
 import { memo, useEffect } from "react";
 import { useParams } from "react-router";
-import { RankingInformation, RankingTable } from "./components";
+import { PlaylistTable, RankingInformation } from "./components";
 import { RankingLeft } from "./components/RankingLeft";
 import { RankingRightWrapper, RankingWrapper } from "./style";
+import { CommentType } from "@/typings";
 
 const Ranking = memo(() => {
     const { id = "19723756" } = useParams();
@@ -17,7 +18,7 @@ const Ranking = memo(() => {
     } = useRequest<any, any>(() => getPlayListDetail(id), {
         retryCount: 3,
         retryInterval: 3000,
-        cacheKey: "playlist-detail",
+        cacheKey: `playlist-detail-${id}`,
     });
     const { data: commentData, run: commentRun } = useRequest(() =>
         getComment({ type: CommentType.PlayList, id: parseInt(id) }),
@@ -36,7 +37,7 @@ const Ranking = memo(() => {
                     ) : (
                         <>
                             <RankingInformation info={res?.playlist} />
-                            <RankingTable
+                            <PlaylistTable
                                 playCount={res?.playlist?.playCount}
                                 trackCount={res?.playlist?.trackCount}
                                 list={res?.playlist?.tracks}

@@ -2,9 +2,10 @@ import { disCoverMenu } from "@/configs/linkData";
 import { memo } from "react";
 import { Outlet } from "react-router";
 import { NavLink } from "react-router-dom";
-import { BasicLayout } from "../BasicLayout";
+import { BasicLayout } from "@/layouts";
 import { DiscoverTabWrapper } from "./style";
-export const DisCoverLayout: React.MemoExoticComponent<() => JSX.Element> = memo(() => {
+
+export const DiscoverLayout = memo(() => {
     return (
         <BasicLayout>
             <DiscoverTabWrapper className="bg-red-default">

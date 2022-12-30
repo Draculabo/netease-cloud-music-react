@@ -1,7 +1,6 @@
 @import "~normalize.css";
 @import "tailwindcss/tailwind.css";
 @import "~antd/dist/antd.css";
-/* 样式的重置 */
 
 body,
 html,
@@ -81,6 +80,10 @@ button {
     color: #333;
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f5f5f5;
+}
+
+:root {
+    --link-color: #0c73c2;
 }
 
 .clearfix::before,

@@ -37,7 +37,7 @@ module.exports = {
                 "babel-plugin-styled-components",
                 {
                     displayName: false, // generate other classname
-                    fileName: true, // generate other classname
+                    fileName: false, // generate other classname
                 },
             ],
         ],
