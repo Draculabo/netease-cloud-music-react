@@ -30,7 +30,7 @@ export function getMusicDetail({ id }: { id: number }) {
  * @param param 歌词参数
  * @returns 歌词
  */
-export function getlyric({ id }: { id: number }) {
+export function getLyric({ id }: { id: number }) {
     return request({
         url: "/lyric",
         method: "get",

@@ -39,6 +39,7 @@ export const RankingInformationRight = styled.div`
 `;
 export const OperateWrapper = styled.div`
     display: flex;
+    flex-wrap: wrap;
     margin-top: 10px;
     button {
         margin-right: 5px;

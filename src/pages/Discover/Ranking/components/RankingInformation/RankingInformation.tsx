@@ -4,11 +4,13 @@ import { useAddPlayList } from "@/utils/hooks";
 import { handleImageSize } from "@/utils/image";
 import { memo } from "react";
 import { OperateWrapper, RankingInformationRight, RankingInformationWrapper } from "./style";
+
 interface RankingInformationProps {
     info: any;
 }
+
 export const RankingInformation = memo<RankingInformationProps>(({ info }) => {
-    const addPlayList = useAddPlayList();
+    const { replacePlayList, addPlayList } = useAddPlayList();
     return (
         <RankingInformationWrapper>
             <img
@@ -19,7 +21,7 @@ export const RankingInformation = memo<RankingInformationProps>(({ info }) => {
             <RankingInformationRight>
                 <h2 className="title">{info?.name || ""}</h2>
                 <div className="update-wrapper">
-                    <i></i>
+                    <i />
                     <span className="update-date">
                         最近更新：
                         {timestampParseDate(info?.trackNumberUpdateTime, "MM月dd日")}
@@ -30,10 +32,15 @@ export const RankingInformation = memo<RankingInformationProps>(({ info }) => {
                         className="playing"
                         text="播放"
                         onClick={() => {
+                            replacePlayList(info?.id);
+                        }}
+                    />
+                    <button
+                        className="add-playing"
+                        onClick={() => {
                             addPlayList(info?.id);
                         }}
                     />
-                    <button className="add-playing" />
                     <CButton
                         className="collect-btn"
                         text={"(" + (info?.subscribedCount || "") + ")"}

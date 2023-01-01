@@ -8,7 +8,7 @@ export const request = axios.create({
     withCredentials: true,
     adapter: cacheAdapterEnhancer(axios.defaults.adapter as AxiosAdapter, {
         cache: true,
-        expire: 3000,
+        expire: 30000,
     }),
 });
 request.interceptors.request.use(

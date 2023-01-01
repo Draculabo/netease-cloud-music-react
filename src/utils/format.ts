@@ -1,9 +1,13 @@
+import { isNil } from "ramda";
 /**
  * 格式化数字
  * @param count 数字
  * @returns 格式化后的字符串
  */
-export const formatCount = (count: number) => {
+export const formatCount = (count?: number) => {
+    if (isNil(count)) {
+        return "0";
+    }
     if (count <= 0) {
         return "0";
     }
@@ -12,7 +16,7 @@ export const formatCount = (count: number) => {
     } else if (count > 10000) {
         return Math.round(count / 10000) + "万";
     } else {
-        return count;
+        return count.toString();
     }
 };
 
@@ -64,4 +68,12 @@ export const timestampParseDate = (timestamp: number, fmt: string) => {
  */
 export const formatToMinuteSecond = timestamp => {
     return timestampParseDate(timestamp, "mm:ss");
+};
+/**
+ * 格式化时间戳为yyyy年MM月dd日格式的时间
+ * @param timestamp 时间戳
+ * @returns 时间字符串
+ */
+export const formatToYMS = timestamp => {
+    return timestampParseDate(timestamp, "yyyy年MM月dd日");
 };

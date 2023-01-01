@@ -1,4 +1,5 @@
 import { request } from "@/utils";
+import { defaultMsg, errorMsg } from "@/utils/message";
 /**
  * * 获取推荐歌单
  * @param limit 请求条数
@@ -11,7 +12,11 @@ export function getRecommendList(limit?: number) {
         params: {
             limit,
         },
-    });
+    })
+        .then((res: any) => res.result)
+        .catch(err => {
+            throw new Error(err);
+        });
 }
 /**
  * 获取新歌列表
@@ -38,7 +43,11 @@ export function getTopList() {
         url: "/toplist",
         method: "get",
         params: {},
-    });
+    })
+        .then((res: any) => res?.list)
+        .catch(err => {
+            throw new Error(err);
+        });
 }
 /**
  * 获取歌单详情
@@ -70,5 +79,21 @@ export function getArtistList(offset = 0, limit = 5) {
             offset,
             limit,
         },
-    });
+    })
+        .then((res: any) => res.artists)
+        .catch(err => {
+            throw new Error(err);
+        });
+}
+
+/**
+ * 获取首页轮播图
+ */
+export function getBanners() {
+    return request({
+        url: "/banner",
+        method: "get",
+    })
+        .then((res: any) => res.banners)
+        .catch(() => defaultMsg(errorMsg.networkError));
 }

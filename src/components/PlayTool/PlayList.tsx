@@ -3,15 +3,17 @@ import { PlayListItem, PlayListWrapper } from "./playlist.style";
 import { shallowEqual } from "react-redux";
 import { playerAction } from "../../stores/player/slice";
 import { formatToMinuteSecond } from "@/utils";
-import { useToggleMusic, useTogglePLDisplay, useDispatch, useSelector } from "@/utils/hooks";
-import { SongOfPlaylistType, SongDetail } from "@/stores/player";
+import { useDispatch, useSelector, useToggleMusic, useTogglePLDisplay } from "@/utils/hooks";
+import { SongDetail, SongOfPlaylistType } from "@/stores/player";
 import NoData from "./NoData";
+
 interface PlSelectorType {
     playList: SongOfPlaylistType[];
     playListDisplay: boolean;
     currentSongId: number;
     currentSong: SongDetail;
 }
+
 const PlayList = memo(() => {
     const dispatch = useDispatch();
     const togglePl = useTogglePLDisplay();
@@ -35,22 +37,22 @@ const PlayList = memo(() => {
                     <div className="title">播放列表({playList?.length})</div>
                     <div className="btns">
                         <div className="save-all-btn">
-                            <span className="save-all-btn-icon"></span>
+                            <span className="save-all-btn-icon" />
                             <span className="text">收藏全部</span>
                         </div>
-                        <span className="splite-line"></span>
+                        <span className="split-line" />
                         <div
                             className="clear-btn"
                             onClick={() => dispatch(playerAction.setPlayList([]))}
                         >
-                            <span className="clear-btn-icon"></span>
+                            <span className="clear-btn-icon" />
                             <span className="text">清除</span>
                         </div>
                     </div>
                 </div>
                 <div className="header-right">
                     <div className="song-name">{currentSong?.title}</div>
-                    <div className="close-btn" onClick={togglePl}></div>
+                    <div className="close-btn" onClick={togglePl} />
                 </div>
             </div>
             <div className="play-list-content">
@@ -65,11 +67,12 @@ const PlayList = memo(() => {
                                                 currentSongId === track.id ? "active" : ""
                                             }`}
                                             onClick={() => toggleMusic(i)}
-                                        ></div>
+                                        />
                                         <div className="song-name" onClick={() => toggleMusic(i)}>
                                             {track.name}
                                         </div>
-                                        <div className="operator-container"></div>
+                                        <div className="operator-container" />
+
                                         <div
                                             className="singers text-nowrap"
                                             title={track.author?.map(ar => ar.name).join("/")}
@@ -84,13 +87,13 @@ const PlayList = memo(() => {
                                         >
                                             {formatToMinuteSecond(track.duration)}
                                         </div>
-                                        <div className="goto-btn"></div>
+                                        <div className="goto-btn" />
                                     </PlayListItem>
                                 );
                             })}
                         </div>
                     ) : (
-                        <NoData text="你还没有添加任何歌曲"></NoData>
+                        <NoData text="你还没有添加任何歌曲" />
                     )}
                 </div>
                 <div className="play-list-content-right">

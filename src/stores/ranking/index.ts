@@ -12,7 +12,7 @@ const initialState: RankingState = {
     error: "",
     rankingList: [],
 };
-const getRankings = createAsyncThunk("ranking/getRankings", async (args, thunkAPI) => {
+const getRankings = createAsyncThunk("ranking/getRankings", async () => {
     const data = await getTopList();
 });
 const rankingSlice = createSlice({

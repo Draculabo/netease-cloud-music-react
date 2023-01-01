@@ -1,25 +1,39 @@
 import { getPlayListDetail } from "@/services";
-import { getlyric, getMusicDetail, getMusicUrl } from "@/services/player";
+import { getLyric, getMusicDetail, getMusicUrl } from "@/services/player";
 import { parseLyric } from "@/utils/lyric-parse";
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { PlayerState } from "./types";
+import { PlayerState, SongOfPlaylistType } from "./types";
+import { AddPlayListEnum } from "@/utils/hooks/useAddPlayList";
+import { equals, uniqWith } from "ramda";
 
 export const getMusicUrlThunk = createAsyncThunk(`player/getMusicUrl`, async (id: number) => {
     const { data } = await getMusicUrl({ id });
     return data;
 });
 export const getMusicDetailThunk = createAsyncThunk(`player/getMusicDetail`, async (id: number) => {
-    const data = await getMusicDetail({ id });
-    return data;
+    return getMusicDetail({ id });
 });
-export const getlyricThunk = createAsyncThunk(`player/getlyric`, async (id: number) => {
-    const data = await getlyric({ id });
-    return data;
+export const getLyricThunk = createAsyncThunk(`player/getLyric`, async (id: number) => {
+    return getLyric({ id });
 });
 export const getPlayListThunk = createAsyncThunk(`player/getPlayList`, async (id: number) => {
-    const data = await getPlayListDetail(id.toString());
-    return data;
+    return getPlayListDetail(id.toString());
 });
+export const mapPlaylist = res => {
+    if (!res) {
+        return [];
+    }
+    return [
+        ...(res?.playlist?.tracks?.map(value => {
+            return {
+                id: value.id,
+                name: value.name,
+                author: value.ar,
+                duration: value.dt,
+            };
+        }) ?? []),
+    ];
+};
 const initialState: PlayerState = {
     loading: false,
     error: "",
@@ -27,6 +41,7 @@ const initialState: PlayerState = {
     playListShow: false,
     volumeShow: false,
     playing: false,
+    playlistStatus: AddPlayListEnum.AppendPlayList,
     currentSongIndex: 0,
     currentSong: {
         id: 0,
@@ -61,20 +76,26 @@ const playerSlice = createSlice({
         ) {
             state.currentSong.id = payload?.id;
         },
-        addPlayList(state, { payload }) {
-            if (state.playList.find(value => value.id === payload.id)) {
-                return;
+        setPlaylistStatus(state, { payload }: PayloadAction<AddPlayListEnum>) {
+            state.playlistStatus = payload;
+        },
+        addPlayList(state, { payload }: PayloadAction<SongOfPlaylistType | SongOfPlaylistType[]>) {
+            // 歌曲数组
+            if (Array.isArray(payload)) {
+                state.playList = uniqWith<SongOfPlaylistType, unknown>((a, b) => {
+                    return equals(a, b);
+                })([...state.playList, ...payload]);
             }
-            if (typeof payload === "number") {
-                state.playList.push({
-                    id: payload,
-                    name: state.currentSong.title,
-                    author: state.currentSong.author,
-                    duration: state.currentSong.duration,
-                });
-            } else {
+            // 歌曲
+            else {
+                if (state.playList.find(s => s.id === payload.id)) {
+                    return;
+                }
                 state.playList.push(payload);
             }
+        },
+        replacePlayList(state, { payload }: PayloadAction<SongOfPlaylistType[]>) {
+            state.playList = [...payload];
         },
         setPlayList(state, { payload }) {
             state.playList = payload;
@@ -85,7 +106,7 @@ const playerSlice = createSlice({
         toggleVolumeDisplay(state) {
             state.volumeShow = !state.volumeShow;
         },
-        setLyricInex(state, { payload }) {
+        setLyricIndex(state, { payload }) {
             state.currentSong.currentLyric = payload;
         },
         setCurrentTime(state, { payload }) {
@@ -112,7 +133,7 @@ const playerSlice = createSlice({
                 state.currentSong.imageUrl = payload?.songs[0]?.al?.picUrl;
             }
         },
-        [getlyricThunk.fulfilled.type](state, { payload }) {
+        [getLyricThunk.fulfilled.type](state, { payload }) {
             if (state.currentSong !== null) {
                 state.currentSong.lyrics = parseLyric(payload?.lrc?.lyric);
             }
@@ -127,16 +148,7 @@ const playerSlice = createSlice({
                 };
             }>,
         ) {
-            state.playList = [
-                ...(payload?.playlist?.tracks?.map(value => {
-                    return {
-                        id: value.id,
-                        name: value.name,
-                        author: value.ar,
-                        duration: value.dt,
-                    };
-                }) ?? []),
-            ];
+            state.playList = [...mapPlaylist(payload)];
         },
     },
 });

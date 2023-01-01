@@ -2,12 +2,12 @@ import { DiscoverModuleLayout } from "@/layouts";
 import { getTopAlbum } from "@/services/discover/recommend";
 import { splitArray } from "@/utils";
 import { useRequest } from "ahooks";
-import { memo, useEffect, useMemo, useRef, useState } from "react";
-import { RArrow, LArrow, NewSongWrapper, RollItem } from "./style";
+import { memo, useMemo, useRef, useState } from "react";
+import { LArrow, NewSongWrapper, RArrow, RollItem } from "./style";
 import Slider from "react-slick";
-// import { data } from "@/mock/NewSong";
 import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { handleImageSize } from "@/utils/image";
+
 export const NewSong: React.MemoExoticComponent<() => JSX.Element> = memo(() => {
     const [playList, setPlayList] = useState<any[]>([]);
     const newSongCarouselRef = useRef<Slider>(null);
@@ -54,7 +54,13 @@ export const NewSong: React.MemoExoticComponent<() => JSX.Element> = memo(() => 
                                             return (
                                                 <RollItem key={s2.id}>
                                                     <div className="album-top">
-                                                        <img src={s2.blurPicUrl} />
+                                                        <img
+                                                            src={handleImageSize({
+                                                                url: s2.blurPicUrl,
+                                                                width: 100,
+                                                                height: 100,
+                                                            })}
+                                                        />
                                                         <a href="" className="mask"></a>
                                                         <a href="" className="icon-play"></a>
                                                     </div>

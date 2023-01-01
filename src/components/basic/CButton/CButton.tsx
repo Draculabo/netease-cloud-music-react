@@ -1,17 +1,8 @@
-import { memo, PropsWithChildren } from "react";
+import { ButtonHTMLAttributes } from "react";
 import { CButtonWrapper } from "./style";
-import classnames from "classnames";
-interface CButtonProps {
+interface CButtonProps extends ButtonHTMLAttributes<any> {
     text: string;
-    className?: string;
-    onClick?: React.MouseEventHandler<HTMLElement>;
 }
-export const CButton = memo<PropsWithChildren<CButtonProps>>(
-    ({ text, className = "", onClick }) => {
-        return (
-            <CButtonWrapper onClick={onClick} className={classnames(className)}>
-                {text}
-            </CButtonWrapper>
-        );
-    },
-);
+export const CButton = ({ text, ...rest }: CButtonProps) => {
+    return <CButtonWrapper {...rest}>{text}</CButtonWrapper>;
+};

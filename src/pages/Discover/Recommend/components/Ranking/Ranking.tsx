@@ -1,16 +1,19 @@
 import { DiscoverModuleLayout } from "@/layouts";
 import { getTopList } from "@/services";
 import { useRequest } from "ahooks";
-import { Skeleton } from "antd";
+import { Skeleton } from "@/components";
 import { memo, useState } from "react";
 import { DiscoverRankingList } from "./DiscoverRankingList";
 import { RankingWrapper } from "./style";
-export const Ranking: React.MemoExoticComponent<() => JSX.Element> = memo(() => {
+export const Ranking = memo(() => {
     const [idList, setIdList] = useState<any[]>([]);
     useRequest<any, any>(getTopList, {
-        onSuccess(res) {
-            const condition: string[] = ["飙升榜", "原创榜", "新歌榜"];
-            const data = res.list.filter(value => condition.includes(value.name));
+        onSuccess(list) {
+            if (!list) {
+                return;
+            }
+            const condition = ["飙升榜", "原创榜", "新歌榜"];
+            const data = list?.filter(value => condition.includes(value.name));
             setIdList(data);
         },
     });

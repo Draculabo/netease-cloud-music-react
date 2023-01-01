@@ -1,10 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 @import "~normalize.css";
+@import "tailwindcss/tailwind.css";
 @import "~antd/dist/antd.css";
-
-/* 样式的重置 */
 
 body,
 html,
@@ -41,6 +37,7 @@ li {
 a {
     text-decoration: none;
     color: #666;
+    line-height: 1.6;
 }
 
 i,
@@ -55,10 +52,6 @@ select,
 a {
     outline: none;
     border: none;
-}
-
-a {
-    line-height: 1.6;
 }
 
 a:hover {
@@ -89,6 +82,20 @@ button {
     background-color: #f5f5f5;
 }
 
+:root {
+    --link-color: #0c73c2;
+}
+
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
 .text-nowrap {
     position: relative;
     zoom: 1;
@@ -115,7 +122,7 @@ button {
     background: url(../img/sprite_02.png) no-repeat 0 9999px;
 }
 
-.sprite_covor {
+.sprite_cover {
     background: url(../img/sprite_cover.png) no-repeat 0 9999px;
 }
 
@@ -164,4 +171,10 @@ button {
 
 .btn {
     cursor: pointer;
+}
+
+.default-msg .ant-message-notice-content {
+    background-color: #313131;
+    width: fit-content;
+    color: #fff;
 }

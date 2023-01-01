@@ -1,13 +1,17 @@
+import { AddPlayListEnum } from "@/utils/hooks/useAddPlayList";
+
 export interface LyricType {
     time: number;
     content: string;
 }
+
 export interface SongOfPlaylistType {
     id: number;
     name: string;
     author: any[];
     duration: number;
 }
+
 /**
  * 歌曲详情
  */
@@ -22,6 +26,7 @@ export interface SongDetail {
     currentLyric: number;
     currentTime: number;
 }
+
 /**
  * 播放器状态
  */
@@ -31,6 +36,7 @@ export interface PlayerState {
     playList: SongOfPlaylistType[];
     playListShow: boolean;
     volumeShow: boolean;
+    playlistStatus: AddPlayListEnum;
     playing: boolean;
     currentSongIndex: number;
     currentSong: SongDetail;

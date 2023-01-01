@@ -2,6 +2,7 @@ import { memo, PropsWithChildren } from "react";
 import { useNavigate } from "react-router";
 import { RankingListLayout } from "@/layouts";
 import { RankingListItem } from "./style";
+import RankingLeftSkeleton from "./RankingLeftSkeleton";
 interface RankingListProps {
     title: string;
     data: any[];
@@ -17,9 +18,12 @@ export const RankingList = memo<PropsWithChildren<RankingListProps>>(
         const getRankingDetail = (id: number) => {
             navigate(`/discover/chart/${id}`);
         };
+        if (!data) {
+            return <RankingLeftSkeleton />;
+        }
         return (
             <RankingListLayout title={title}>
-                {data.map(r => {
+                {data?.map(r => {
                     return (
                         <RankingListItem
                             key={r[props.idProperty]}
